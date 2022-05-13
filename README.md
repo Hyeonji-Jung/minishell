@@ -11,6 +11,7 @@ command 토큰화 기준
 4. 기준 문자 이외에는 space 기준으로 파싱
 
 토큰 트리화 기준
+
 PIPE ->         left: CMD,                   right: PIPE
 CMD ->          left: REDIRECTS,             right: SIMPLECMD
 SIMPLECMD ->    left: file_path,             right: ARGV
