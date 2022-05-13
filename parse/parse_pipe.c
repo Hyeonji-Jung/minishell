@@ -1,28 +1,5 @@
 #include "../inc/minishell.h"
 
-int pipe_cnt(char *s)
-{
-    int i;
-    int quote;
-    int dquote;
-    int cnt;
-
-    i = -1;
-    quote = 0;
-    dquote = 0;
-    cnt = 0;
-    while (s[++i])
-    {
-        if (s[i] == '\'')
-            quote = !quote;
-        else if (s[i] == '\"')
-            dquote = !dquote;
-        else if (s[i] == '|' && !quote && !dquote)
-            cnt++;
-    }
-    return (cnt);
-}
-
 int chk_pipe(char *s)
 {
     int i;
@@ -41,26 +18,25 @@ int chk_pipe(char *s)
         else if (s[i] == '|' && !quote && !dquote)
             break;
     } 
-    return (-1);
+    return (i);
 }
 
 char    **pipe_split(char *s)
 {
-    char    n;
     char    **ret;
-    int     i;
     int     loc;
-    int     tmp;
 
-    i = -1;
-    n = pipe_cnt(s) + 1;
-    ret = malloc_s(sizeof(char *) * n);
-    tmp = 0;
-    while (++i < n)
-    {
-        loc = chk_pipe(&s[tmp]);
-        ret[i] = ft_substr(s, tmp, loc);
-        tmp = tmp + loc + 1;
-    }
+	loc = chk_pipe(s);
+    ret = malloc_s(sizeof(char *) * 2);
+	if (loc == ft_strlen(s))
+	{
+		ret[0] = s;
+		ret[1] = NULL;
+	}
+	else
+	{
+		ret[0] = ft_substr(s, 0, loc);
+		ret[1] = ft_substr(s, loc + 1, ft_strlen(s) - loc);
+	}
     return (ret);
 }

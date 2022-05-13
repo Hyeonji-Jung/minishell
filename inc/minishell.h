@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/12 18:13:21 by hyeojung         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:07:42 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@
 # include "struct.h"
 
 int	g_foreground;
+
 char    *ft_substr(char *s, int start, int len);
+int			ft_strlen(char *s);
 
 int signal_catch(int sig); 
 
 t_tree  *init_node(char *s);
 
-l;;char    *ft_substr(char *
-
+void	*malloc_s(int size);
 char    **pipe_split(char *s);
 #endif
