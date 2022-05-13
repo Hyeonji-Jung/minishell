@@ -21,7 +21,7 @@ int chk_pipe(char *s)
     return (i);
 }
 
-char    **pipe_split(char *s)
+char    **parse_pipe(char *s)
 {
     char    **ret;
     int     loc;

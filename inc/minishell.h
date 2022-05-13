@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/13 17:37:16 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/13 20:56:00 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,17 @@ int	g_foreground;
 
 char    *ft_substr(char *s, int start, int len);
 int			ft_strlen(char *s);
+void	*malloc_s(int size);
+int		ft_strncmp(char *s1, char *s2, int n);
 
 int signal_catch(int sig); 
 
-void	*malloc_s(int size);
-char    **pipe_split(char *s);
+char    **parse_pipe(char *s);
 
 t_node	*make_cmd(char *s);
 t_node	*make_pipe(char *s);
+t_node	*make_simplecmd(char *s);
+t_node	*make_redirects(char *s);
+t_node	*make_redirect(char *s);
+
 #endif
