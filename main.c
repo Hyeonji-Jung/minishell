@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "inc/minishell.h"
+ #include "inc/minishell.h"
 #include <ctype.h>
 #include <stdio.h>
 #include <readline/readline.h>
@@ -53,15 +53,18 @@ int prompt(void)
     }
 }
 
-// int	main(void)
-// {
-//     static struct sigaction act;
+int	main(void)
+{
+    char *s = "aaaaaaa|bbbbbbb|ccccccc|ddddddd";
+    char **a = pipe_split(s);
+    printf("%s\n", a[0]);
+    printf("%s\n", a[1]);
+    printf("%s\n", a[2]);
+    printf("%s\n", a[3]);
 //     t_tree                  *tree;
-
-//     // act.sa_handler = catch_signal;
-//     sigaction(SIGINT, &act, NULL);
-//     sigaction(SIGQUIT, &act, NULL);
+//     signal(SIGINT, catch_signal);
+//     signal(SIGQUIT, catch_signal);
 //     system("clear");
 //     tree = init_tree();
 //     g_foreground = 0;
-// }
+ }

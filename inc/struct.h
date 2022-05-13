@@ -12,13 +12,14 @@
 
 #ifndef STRUCT_H
 # define STRUCT_H
+# include "minishell.h"
 
 typedef struct	s_node
 {
-	int		type;
-	char	*content;
-	t_node	*left;
-	t_node	*right;
+	int				type;
+	char			*content;
+	struct s_node	*left;
+	struct s_node	*right;
 }	t_node;
 
 typedef struct	s_tree

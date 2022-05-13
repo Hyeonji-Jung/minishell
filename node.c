@@ -25,8 +25,10 @@ void    make_cmd(t_node *n)
     n->left->type = REDIRECTS;
     n->right->type = SIMPLECMD;
     make_simplecmd(n->right);
+    // if redirects 기호 발견한 경우
+    // make_redirects(n->left);
 }
-전화받고올게요
+
 void    make_simplecmd(t_node *n)
 {
     n->left = malloc(sizeof(t_node));

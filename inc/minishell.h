@@ -28,10 +28,13 @@
 # include "struct.h"
 
 int	g_foreground;
+char    *ft_substr(char *s, int start, int len);
 
 int signal_catch(int sig); 
 
 t_tree  *init_node(char *s);
 
+l;;char    *ft_substr(char *
 
+char    **pipe_split(char *s);
 #endif
