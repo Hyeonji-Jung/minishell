@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/13 17:12:24 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/13 17:36:58 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,14 @@ int prompt(void)
 
 int	main(void)
 {
-    char *s = "aaaaaaabbbbbbbcccccccddddddd";
-    char **a = pipe_split(s);
-	char **b;
-    printf("%s\n", a[0]);
-    printf("%s\n", a[1]);
-	b = pipe_split(a[1]);
-	printf("%s\n", b[0]);
-	printf("%s\n", b[1]);
 
-//     t_tree                  *tree;
+    char *s = "aaaaaaa|bbbbbbb|ccccccc|ddddddd";
+
+     t_node                  *tree;
 //     signal(SIGINT, catch_signal);
 //     signal(SIGQUIT, catch_signal);
 //     system("clear");
-//     tree = init_tree();
-//     g_foreground = 0;
+	tree = make_pipe(s);
+     g_foreground = 0;
+	 printf("%s\n", tree->left->content);
  }

@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/13 17:07:42 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/13 17:37:16 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ int			ft_strlen(char *s);
 
 int signal_catch(int sig); 
 
-t_tree  *init_node(char *s);
-
 void	*malloc_s(int size);
 char    **pipe_split(char *s);
+
+t_node	*make_cmd(char *s);
+t_node	*make_pipe(char *s);
 #endif
