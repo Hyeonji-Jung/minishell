@@ -2,5 +2,5 @@
 
 char	*chk_redirect(char *s)
 {
-	
+	return (s);	
 }

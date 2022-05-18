@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/13 20:56:00 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/18 16:09:17 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ int		ft_strncmp(char *s1, char *s2, int n);
 int signal_catch(int sig); 
 
 char    **parse_pipe(char *s);
+char    **parse_redirect(char *s);
+char    **parse_redirects(char *s);
+char    **parse_cmd(char *s);
 
 t_node	*make_cmd(char *s);
 t_node	*make_pipe(char *s);
 t_node	*make_simplecmd(char *s);
-t_node	*make_redirects(char *s);
 t_node	*make_redirect(char *s);
+t_node	*make_redirects(char *s);
 
 #endif

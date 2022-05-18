@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/13 17:36:58 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/18 16:13:34 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,6 @@ int	main(void)
 	tree = make_pipe(s);
      g_foreground = 0;
 	 printf("%s\n", tree->left->content);
+	 printf("%s\n", tree->right->left->content);
+	 printf("%s\n", tree->right->right->left->content);
  }

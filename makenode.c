@@ -7,6 +7,7 @@ t_node	*make_cmd(char *s)
 
 	if (s == NULL)
 		return (NULL);
+	split = parse_cmd(s);
 	node = malloc_s(sizeof(t_node));
 	node->type = CMD;
 	node->content = s;
@@ -55,7 +56,7 @@ t_node	*make_redirects(char *s)
 	node = malloc(sizeof(t_node));
 	node->type = REDIRECTS;
 	node->content = s;
-	node->left = make_redirect(split[0]);
+//	node->left = make_redirect(split[0]);
 	node->right = make_redirects(split[1]);
 	return (node);
 }

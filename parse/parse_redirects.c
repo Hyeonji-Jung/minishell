@@ -13,7 +13,7 @@ int	chk_redirects(char *s)
 	{
 		if (s[i] == '\'')
 			quote = !quote;
-		else if (s[i] = '\"')
+		else if (s[i] == '\"')
 			dquote = !dquote;
 		else if (s[i] == '<' || s[i] == '>' && !quote && !dquote)
 			break;
