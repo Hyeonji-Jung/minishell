@@ -35,7 +35,7 @@ REDIRECT ->     left: type,                  right: file_name
   - [] tokenization
     - [] pipe 기준
     - [] redirects(<, >, <<, >>) 기준
-    - [] quote, double quote 기준
+    - [] quote, double quote 기준 (quote의 경우 환경변수도 해석해야 함)
     - [] 기준 문자 이외에는 space 기준으로 토큰화
   - [] tokenization 이후 에러 처리
     - [] redirects token 이후 문자열 토큰이 없는 경우
@@ -45,13 +45,24 @@ REDIRECT ->     left: type,                  right: file_name
     - [] 트리화 기준에 따라 트리 만들기
 - [] execute
   - [] 트리 순회하며 명령어 실행하기
+    - [] 명령어 기다릴 때 프롬프트 보여야 함
     - [] 최초 자식 process 생성
     - [] 부모 프로세스에서 pipe, cmd node에 따라 fork 및 pipe 처리 잘 해주어야 함
-    - [] builtin 명령어 실행
-      - [] 예외처리 
+    - [] builtin 처리
+      - [] echo -n
+      - [] cd 상대경로/절대경로
+      - [] pwd
+      - [] export
+      - [] unset
+      - [] env
+      - [] exit
     - [] signal 처리
+      - [] ctrl-C
+      - [] ctrl-D
+      - [] ctrl-\
     - [] redirects 처리
       - [] 존재하지 않는 파일 열거나 읽는 경우 예외 처리
       - [] 파일 생성 및 읽기 잘못된 경우 예외 처리 등등
+    - [] 환경변수($) 처리
   - [] 마지막 자식 프로세스 종료 후 모든 메모리 해제 등 깔끔한 마무리
-  - [] 이전 명령어 history
+  - [] 이전 명령어 history 조회
