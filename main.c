@@ -6,14 +6,14 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/12 18:09:21 by hyeojung         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:36:58 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
  #include "inc/minishell.h"
 #include <ctype.h>
 #include <stdio.h>
-#include <readline/readline.h>
+//#include <readline/readline.h>
 
 // int parse_command(char *command, int *nr_tokens, char *tokens[])
 // {
@@ -46,7 +46,7 @@ int prompt(void)
     
     while (1)
     {
-        command = readline(">> ");
+    //    command = readline(">> ");
         // parse_command(command, &nr_tokens, tokens);
         // for (int i = 0; i < nr_tokens; i++)
         //     printf("%s\n", tokens[i]);
@@ -55,16 +55,14 @@ int prompt(void)
 
 int	main(void)
 {
+
     char *s = "aaaaaaa|bbbbbbb|ccccccc|ddddddd";
-    char **a = pipe_split(s);
-    printf("%s\n", a[0]);
-    printf("%s\n", a[1]);
-    printf("%s\n", a[2]);
-    printf("%s\n", a[3]);
-//     t_tree                  *tree;
+
+     t_node                  *tree;
 //     signal(SIGINT, catch_signal);
 //     signal(SIGQUIT, catch_signal);
 //     system("clear");
-//     tree = init_tree();
-//     g_foreground = 0;
+	tree = make_pipe(s);
+     g_foreground = 0;
+	 printf("%s\n", tree->left->content);
  }
