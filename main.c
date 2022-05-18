@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/18 16:13:34 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/18 17:26:41 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,50 @@ int prompt(void)
     }
 }
 
-int	main(void)
+char	*ft_strjoin(char *s1, char *s2)
+{
+	char	*ret;
+	int		n;
+	int		m;
+	int		i;
+
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	n = ft_strlen(s1);
+	m = ft_strlen(s2);
+	ret = malloc(sizeof(char) * (n + m + 1));
+	if (ret == NULL)
+		return (0);
+	i = -1;
+	while (++i < n)
+		ret[i] = s1[i];
+	i = -1;
+	while (++i < m)
+		ret[n + i] = s2[i];
+	ret[n + i] = '\0';
+	return (ret);
+}
+void	node_search(t_node *node, char *s)
+{
+//	if (node->content)
+	if (!node->left)
+		printf("%s: %s\n", s, node->content);
+	if (node->left)
+		node_search(node->left, ft_strjoin(s, "->left"));
+	if (node->right)
+		node_search(node->right, ft_strjoin(s, "->right"));
+}
+
+int	main(int argc, char *argv[])
 {
 
-    char *s = "aaaaaaa|bbbbbbb|ccccccc|ddddddd";
-
+//    char *s = "aaaaaaa|bbbbbbb|ccccccc<ddddddd";
+	char *s = argv[1];
      t_node                  *tree;
 //     signal(SIGINT, catch_signal);
 //     signal(SIGQUIT, catch_signal);
 //     system("clear");
 	tree = make_pipe(s);
      g_foreground = 0;
-	 printf("%s\n", tree->left->content);
-	 printf("%s\n", tree->right->left->content);
-	 printf("%s\n", tree->right->right->left->content);
+	 node_search(tree, "root");
  }

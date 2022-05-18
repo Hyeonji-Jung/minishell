@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/18 16:09:17 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/18 16:58:45 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,10 @@ t_node	*make_pipe(char *s);
 t_node	*make_simplecmd(char *s);
 t_node	*make_redirect(char *s);
 t_node	*make_redirects(char *s);
+
+t_node	*make_type(char *s);
+t_node	*make_filename(char *s);
+t_node	*make_filepath(char *s);
+t_node	*make_argv(char *s);
 
 #endif
