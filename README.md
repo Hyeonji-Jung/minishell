@@ -19,6 +19,8 @@ command 토큰화 기준
 
 토큰 트리화 기준
 
+![image](https://user-images.githubusercontent.com/67726356/169008976-4023d913-135b-482f-a593-8db26e482010.png)
+
 PIPE ->         left: CMD,                   right: PIPE
 CMD ->          left: REDIRECTS,             right: SIMPLECMD
 SIMPLECMD ->    left: file_path,             right: ARGV
