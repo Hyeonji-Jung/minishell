@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/18 17:26:41 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/18 20:19:17 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	node_search(t_node *node, char *s)
 int	main(int argc, char *argv[])
 {
 
-//    char *s = "aaaaaaa|bbbbbbb|ccccccc<ddddddd";
 	char *s = argv[1];
      t_node                  *tree;
 //     signal(SIGINT, catch_signal);

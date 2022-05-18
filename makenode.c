@@ -7,12 +7,12 @@ t_node	*make_cmd(char *s)
 
 	if (s == NULL)
 		return (NULL);
-	split = parse_redirects(s);
+	split = parse_cmd(s);
 	node = malloc_s(sizeof(t_node));
 	node->type = CMD;
 	node->content = s;
 	node->right = make_simplecmd(split[0]);
-	node->left = make_redirect(split[1]);
+	node->left = make_redirects(split[1]);
 	return (node);
 }
 
@@ -42,7 +42,7 @@ t_node	*make_simplecmd(char *s)
 	node = malloc_s(sizeof(t_node));
 	node->type = SIMPLECMD;
 	node->content = s;
-	split = parse_cmd(s);
+	split = parse_simplecmd(s);
 	node->left = make_filepath(split[0]);
 	node->right = make_argv(split[1]);
 	return (node);
@@ -57,7 +57,8 @@ t_node	*make_redirects(char *s)
 		return (NULL);
 	node = malloc(sizeof(t_node));
 	node->type = REDIRECTS;
-	node->content = s;
+	node->content = delete_space(s);
+	split = parse_redirects(node->content);
 	node->left = make_redirect(split[0]);
 	node->right = make_redirects(split[1]);
 	return (node);

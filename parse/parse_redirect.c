@@ -5,6 +5,7 @@ char	**parse_redirect(char *s)
 	char	**ret;
 	int		loc;
 
+	ret = malloc_s(sizeof(char *) * 2);
 	if (s[0] == '<')
 	{
 		if (s[1] == '<')
@@ -20,7 +21,6 @@ char	**parse_redirect(char *s)
 			loc = 1;
 	}
 	ret[0] = ft_substr(s, 0, loc);
-	ret[1] = ft_substr(s, loc, ft_strlen(s) - loc);
-
+	ret[1] = ft_substr(s, loc , ft_strlen(s) - loc);
 	return (ret);	
 }
