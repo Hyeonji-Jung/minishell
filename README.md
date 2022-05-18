@@ -24,3 +24,18 @@ CMD ->          left: REDIRECTS,             right: SIMPLECMD
 SIMPLECMD ->    left: file_path,             right: ARGV
 REDIRECTS ->    left: REDIRECT or REDIRECTS  right: REDIRECT or REDIRECTS
 REDIRECT ->     left: type,                  right: file_name
+
+<br/>
+
+기능 구현 목록
+[] parsing
+  [] parsing 전 에러 처리
+    [] quote, double quote가 홀수인 경우
+    [] - 다음에 문자 없는 경우
+  [] tokenization
+    [] pipe 기준
+    [] redirects(<, >, <<, >>) 기준
+    [] quote, double quote 기준
+    [] 기준 문자 이외에는 space 기준으로 토큰화
+  [] tokenization 이후 에러 처리
+    [] 
