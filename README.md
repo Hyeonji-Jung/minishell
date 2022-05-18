@@ -35,16 +35,16 @@ REDIRECT ->     left: type,                  right: file_name
     - [] quote, double quote가 홀수인 경우
     - [] - 다음에 문자 없는 경우
   - [] tokenization
-    - [] pipe 기준
-    - [] redirects(<, >, <<, >>) 기준
+    - [v] pipe 기준
+    - [v] redirects(<, >, <<, >>) 기준
     - [] quote, double quote 기준 (quote의 경우 환경변수도 해석해야 함)
-    - [] 기준 문자 이외에는 space 기준으로 토큰화
+    - [v] 기준 문자 이외에는 space 기준으로 토큰화
   - [] tokenization 이후 에러 처리
     - [] redirects token 이후 문자열 토큰이 없는 경우
     - [] pipe 토큰 이후 simple cmd 토큰 없는 경우
     - [] simple cmd && 존재하지 않는 빌트인인 경우
-  - [] 트리로 만들기
-    - [] 트리화 기준에 따라 트리 만들기
+  - [v] 트리로 만들기
+    - [v] 트리화 기준에 따라 트리 만들기
 - [] execute
   - [] 트리 순회하며 명령어 실행하기
     - [] 명령어 기다릴 때 프롬프트 보여야 함
