@@ -6,11 +6,11 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/12 18:08:12 by hyeojung         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:44:02 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "inc/minishell.h"
 
 int signal_catch(int sig)
 {

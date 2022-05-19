@@ -16,15 +16,26 @@ int chk_space(char *s)
         else if (s[i] == '\"')
             dquote = !dquote;
         else if (s[i] == ' ' && !quote && !dquote)
-            break;
+			break ;
     } 
     return (i);
+}
+
+int	last_space(char *s)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i] == ' ')
+		;
+	return (i);
 }
 
 char    **parse_simplecmd(char *s)
 {
     char    **ret;
     int     loc;
+	char	*tmp;
 
 	loc = chk_space(s);
     ret = malloc_s(sizeof(char *) * 2);
@@ -36,7 +47,11 @@ char    **parse_simplecmd(char *s)
 	else
 	{
 		ret[0] = ft_substr(s, 0, loc);
-		ret[1] = ft_substr(s, loc + 1, ft_strlen(s) - loc);
+		ret[1] = s;
+//		ret[1] = ft_substr(s, loc + last_space(&s[loc]) - 1, ft_strlen(s) - loc - last_space(&s[loc]) + 1);
+//		tmp = ft_strjoin(ret[0], ret[1]);
+//		free(ret[1]);
+//		ret[1] = tmp;
 	}
     return (ret);
 }
