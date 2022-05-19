@@ -27,6 +27,7 @@ t_node	*make_filename(char *s)
 	node->right = NULL;
 	return (node);
 }
+
 t_node	*make_filepath(char *s)
 {
 	t_node	*node;
@@ -40,6 +41,7 @@ t_node	*make_filepath(char *s)
 	node->right = NULL;
 	return (node);
 }
+
 t_node	*make_argv(char *s)
 {
 	t_node	*node;

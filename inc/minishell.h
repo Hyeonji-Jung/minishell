@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/19 18:21:10 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/19 20:06:14 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,21 @@
 
 int	g_foreground;
 
-char    *ft_substr(char *s, int start, int len);
-int			ft_strlen(char *s);
+char	*ft_substr(char *s, int start, int len);
+int		ft_strlen(char *s);
 void	*malloc_s(int size);
 int		ft_strncmp(char *s1, char *s2, int n);
 char	*delete_space(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*multi_space(char *s);
 
-int signal_catch(int sig); 
+int		signal_catch(int sig);
 
-char    **parse_pipe(char *s);
-char    **parse_redirect(char *s);
-char    **parse_redirects(char *s);
-char    **parse_cmd(char *s);
-char    **parse_simplecmd(char *s);
+char	**parse_pipe(char *s);
+char	**parse_redirect(char *s);
+char	**parse_redirects(char *s);
+char	**parse_cmd(char *s);
+char	**parse_simplecmd(char *s);
 
 t_node	*make_cmd(char *s);
 t_node	*make_pipe(char *s);

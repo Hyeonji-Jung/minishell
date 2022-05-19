@@ -1,6 +1,6 @@
 #include "../inc/minishell.h"
 
-char **parse_redirects(char *s)
+char	**parse_redirects(char *s)
 {
 	char	**ret;
 	int		i;
@@ -10,7 +10,7 @@ char **parse_redirects(char *s)
 	while (s[++i])
 	{
 		if (s[i] == '<' || s[i] == '>')
-			break;
+			break ;
 	}
 	ret[0] = ft_substr(s, 0, i);
 	if (ft_strlen(s) > i)

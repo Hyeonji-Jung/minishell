@@ -35,17 +35,22 @@ static int	cnt_len(char *s)
 	return (cnt);
 }
 
+static void	insert_char(char *s, char c)
+{
+	static int	cnt;
+
+	s[cnt++] = c;
+}
+
 char	*multi_space(char *s)
 {
 	int		i;
-	int		j;
 	int		quote;
 	int		dquote;
 	int		space;
 	char	*ret;
 
 	i = -1;
-	j = 0;
 	quote = 0;
 	dquote = 0;
 	ret = malloc_s(sizeof(char) * (cnt_len(s) + 1));
@@ -59,7 +64,7 @@ char	*multi_space(char *s)
 		else if (s[i] == '\"')
 			dquote = !dquote;
 		space = flag_space(quote, dquote, s[i]);
-		ret[j++] = s[i];
+		insert_char(ret, s[i]);
 	}
 	return (ret);
 }

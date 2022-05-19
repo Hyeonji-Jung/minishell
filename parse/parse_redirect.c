@@ -21,6 +21,6 @@ char	**parse_redirect(char *s)
 			loc = 1;
 	}
 	ret[0] = ft_substr(s, 0, loc);
-	ret[1] = ft_substr(s, loc , ft_strlen(s) - loc);
-	return (ret);	
+	ret[1] = ft_substr(s, loc, ft_strlen(s) - loc);
+	return (ret);
 }

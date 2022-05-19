@@ -2,7 +2,7 @@
 
 int	get_len(char *s)
 {
-	int ret;
+	int	ret;
 	int	i;
 
 	i = -1;
