@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/19 20:10:42 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/22 16:56:24 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int prompt(void)
     int     nr_tokens;
 	t_node	*tree;
     
+	printf("%s\n\n", getenv("MAIL"));
     while (1)
     {
         command = readline(">> ");
@@ -65,11 +66,19 @@ int prompt(void)
     }
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char *argv[], char *envp[])
 {
+	int i = 0;
 
-	prompt();
-	char *s = argv[1];
+	printf("%d\n", putenv("MAIL=junpkim@stduent.42seoul.kr"));
+	while (envp[i])
+	{
+		printf("%s\n", envp[i]);
+		i++;
+	}
+
+//	prompt();
+/*	char *s = argv[1];
      t_node                  *tree;
 //     signal(SIGINT, catch_signal);
 //     signal(SIGQUIT, catch_signal);
@@ -77,4 +86,5 @@ int	main(int argc, char *argv[])
 	tree = make_pipe(s);
      g_foreground = 0;
 	 node_search(tree, "root");
+	 */
  }
