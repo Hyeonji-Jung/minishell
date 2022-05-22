@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/22 16:59:48 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/22 20:50:33 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	g_foreground;
 char	*ft_substr(char *s, int start, int len);
 int		ft_strlen(char *s);
 void	*malloc_s(int size);
+int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(char *s1, char *s2, int n);
 char	*delete_space(char *s);
 char	*ft_strjoin(char *s1, char *s2);
@@ -57,9 +58,18 @@ t_node	*make_filename(char *s);
 t_node	*make_filepath(char *s);
 t_node	*make_argv(char *s);
 
+char	**env_split(char *s);
+void	new_env(t_env **env, char *s);
+char	*search_env(t_env *env, char *s);
+void	delete_env(t_env **env, char *s);
+void	print_env(t_env **env);
+t_env	*env_init(char **s);
+
+char	*cmd_pwd(void);
 void	cmd_exit(void);
-int		cmd_env(char *env[]);
-int		cmd_export(char *s);
-int		cmd_unset(char *s);
+int		cmd_env(t_env *env);
+int		cmd_export(t_env **env, char *s);
+int		cmd_unset(t_env **env, char *s);
+int		cmd_execute(t_env **env, char *cmd, char *option);
 
 #endif

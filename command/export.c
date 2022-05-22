@@ -1,6 +1,7 @@
 #include "../inc/minishell.h"
 
-int	cmd_export(char *s)
+int	cmd_export(t_env **env, char *s)
 {
-	return (putenv(s));
+	new_env(env, s);
+	return (0);
 }

@@ -7,8 +7,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		m;
 	int		i;
 
-	if (s1 == NULL || s2 == NULL)
+	if (s1 == NULL && s2 == NULL)
 		return (0);
+	if (s1 == NULL)
+		return (s2);
+	if (s2 == NULL)
+		return (s1);
 	n = ft_strlen(s1);
 	m = ft_strlen(s2);
 	ret = malloc(sizeof(char) * (n + m + 1));

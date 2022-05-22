@@ -1,11 +1,7 @@
 #include "../inc/minishell.h"
 
-int	cmd_env(char *env[])
+int	cmd_env(t_env *env)
 {
-	int	i;
-
-	i = -1;
-	while (env[++i])
-		printf("%s\n", env[i]);
+	print_env(&env);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/22 16:56:24 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/22 21:04:47 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,41 +41,55 @@
 void	node_search(t_node *node, char *s)
 {
 //	if (node->content)
-//	if (!node->left)
+	if (!node->left)
 		printf("%s: %s\n", s, node->content);
 	if (node->left)
 		node_search(node->left, ft_strjoin(s, "->left"));
 	if (node->right)
 		node_search(node->right, ft_strjoin(s, "->right"));
+		
 }
 
-int prompt(void)
+void	node_execute(t_node *node, t_env *env)
+{
+	if (node->type == SIMPLECMD)
+	{
+		if (node->right != NULL)
+			cmd_execute(&env, node->left->content, node->right->content);
+		else
+			cmd_execute(&env, node->left->content, NULL);
+	}
+	if (node->left)
+		node_execute(node->left, env);
+	if (node->right)
+		node_execute(node->right, env);
+}
+
+int prompt(t_env *env)
 {
     char    *command;
     char    **tokens;
     int     nr_tokens;
 	t_node	*tree;
     
-	printf("%s\n\n", getenv("MAIL"));
     while (1)
     {
         command = readline(">> ");
 		tree = make_pipe(multi_space(command));
-		node_search(tree, "root");
+//		tree = make_pipe(command);
+//		node_search(tree, "root");
+		node_execute(tree, env);
 		tree = NULL;
     }
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
+	t_env	*env;
+	
+	env = env_init(envp);
+	prompt(env);
 	int i = 0;
-
-	printf("%d\n", putenv("MAIL=junpkim@stduent.42seoul.kr"));
-	while (envp[i])
-	{
-		printf("%s\n", envp[i]);
-		i++;
-	}
 
 //	prompt();
 /*	char *s = argv[1];

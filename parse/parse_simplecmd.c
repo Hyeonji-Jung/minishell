@@ -37,7 +37,8 @@ char	**parse_simplecmd(char *s)
 	else
 	{
 		ret[0] = ft_substr(s, 0, loc);
-		ret[1] = s;
+//		ret[1] = s;
+		ret[1] = ft_substr(s, loc + 1, ft_strlen(s) - loc);
 	}
 	return (ret);
 }

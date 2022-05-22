@@ -2,5 +2,5 @@
 
 void	cmd_exit(void)
 {
-	system("exit");
+	exit(0);
 }

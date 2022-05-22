@@ -35,11 +35,13 @@ static int	cnt_len(char *s)
 	return (cnt);
 }
 
-static void	insert_char(char *s, char c)
+static void	insert_char(char *s, char c, int len)
 {
 	static int	cnt;
 
 	s[cnt++] = c;
+	if (len == cnt)
+		cnt = 0;
 }
 
 char	*multi_space(char *s)
@@ -64,7 +66,7 @@ char	*multi_space(char *s)
 		else if (s[i] == '\"')
 			dquote = !dquote;
 		space = flag_space(quote, dquote, s[i]);
-		insert_char(ret, s[i]);
+		insert_char(ret, s[i], cnt_len(s));
 	}
 	return (ret);
 }
