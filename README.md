@@ -53,11 +53,11 @@ REDIRECT ->     left: type,                  right: file_name
     - [] builtin 처리
       - [] echo -n
       - [] cd 상대경로/절대경로
-      - [] pwd
-      - [] export
-      - [] unset
-      - [] env
-      - [] exit
+      - [v] pwd
+      - [v] export
+      - [v] unset
+      - [v] env
+      - [v] exit
     - [] signal 처리
       - [] ctrl-C
       - [] ctrl-D
