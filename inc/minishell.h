@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/22 20:50:33 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/23 19:47:58 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char	*delete_space(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*multi_space(char *s);
+char	**ft_split(char *s, char c);
 
 int		signal_catch(int sig);
 
@@ -71,5 +72,6 @@ int		cmd_env(t_env *env);
 int		cmd_export(t_env **env, char *s);
 int		cmd_unset(t_env **env, char *s);
 int		cmd_execute(t_env **env, char *cmd, char *option);
+int		cmd_cd(char *s);
 
 #endif

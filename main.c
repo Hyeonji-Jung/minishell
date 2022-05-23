@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/22 21:04:47 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/23 21:05:03 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 void	node_search(t_node *node, char *s)
 {
 //	if (node->content)
-	if (!node->left)
+//	if (!node->left)
 		printf("%s: %s\n", s, node->content);
 	if (node->left)
 		node_search(node->left, ft_strjoin(s, "->left"));
@@ -75,9 +75,10 @@ int prompt(t_env *env)
     while (1)
     {
         command = readline(">> ");
+		add_history(command);
 		tree = make_pipe(multi_space(command));
 //		tree = make_pipe(command);
-//		node_search(tree, "root");
+	//	node_search(tree, "root");
 		node_execute(tree, env);
 		tree = NULL;
     }
