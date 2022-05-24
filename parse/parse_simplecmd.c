@@ -1,6 +1,6 @@
 #include "../inc/minishell.h"
 
-int	chk_pipe(char *s)
+int	chk_space(char *s)
 {
 	int	i;
 	int	quote;
@@ -15,28 +15,30 @@ int	chk_pipe(char *s)
 			quote = !quote;
 		else if (s[i] == '\"')
 			dquote = !dquote;
-		else if (s[i] == '|' && !quote && !dquote)
+		else if (s[i] == ' ' && !quote && !dquote)
 			break ;
 	}
 	return (i);
 }
 
-char	**parse_pipe(char *s)
+char	**parse_simplecmd(char *s)
 {
 	char	**ret;
 	int		loc;
+	char	*tmp;
 
-	loc = chk_pipe(s);
+	loc = chk_space(s);
 	ret = malloc_s(sizeof(char *) * 2);
 	if (loc == ft_strlen(s))
 	{
 		ret[0] = s;
-		ret[1] = NULL;
+		ret[1] = s;
 	}
 	else
 	{
 		ret[0] = ft_substr(s, 0, loc);
-		ret[1] = ft_substr(s, loc + 1, ft_strlen(s) - loc);
+		ret[1] = s;
+//		ret[1] = ft_substr(s, loc + 1, ft_strlen(s) - loc);
 	}
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/13 17:36:58 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/23 21:05:03 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,31 +38,68 @@
 // 	return 0;
 // }
 
-int prompt(void)
+void	node_search(t_node *node, char *s)
+{
+//	if (node->content)
+//	if (!node->left)
+		printf("%s: %s\n", s, node->content);
+	if (node->left)
+		node_search(node->left, ft_strjoin(s, "->left"));
+	if (node->right)
+		node_search(node->right, ft_strjoin(s, "->right"));
+		
+}
+
+void	node_execute(t_node *node, t_env *env)
+{
+	if (node->type == SIMPLECMD)
+	{
+		if (node->right != NULL)
+			cmd_execute(&env, node->left->content, node->right->content);
+		else
+			cmd_execute(&env, node->left->content, NULL);
+	}
+	if (node->left)
+		node_execute(node->left, env);
+	if (node->right)
+		node_execute(node->right, env);
+}
+
+int prompt(t_env *env)
 {
     char    *command;
     char    **tokens;
     int     nr_tokens;
+	t_node	*tree;
     
     while (1)
     {
-    //    command = readline(">> ");
-        // parse_command(command, &nr_tokens, tokens);
-        // for (int i = 0; i < nr_tokens; i++)
-        //     printf("%s\n", tokens[i]);
+        command = readline(">> ");
+		add_history(command);
+		tree = make_pipe(multi_space(command));
+//		tree = make_pipe(command);
+	//	node_search(tree, "root");
+		node_execute(tree, env);
+		tree = NULL;
     }
 }
 
-int	main(void)
+int	main(int argc, char *argv[], char *envp[])
 {
+	t_env	*env;
+	
+	env = env_init(envp);
+	prompt(env);
+	int i = 0;
 
-    char *s = "aaaaaaa|bbbbbbb|ccccccc|ddddddd";
-
+//	prompt();
+/*	char *s = argv[1];
      t_node                  *tree;
 //     signal(SIGINT, catch_signal);
 //     signal(SIGQUIT, catch_signal);
 //     system("clear");
 	tree = make_pipe(s);
      g_foreground = 0;
-	 printf("%s\n", tree->left->content);
+	 node_search(tree, "root");
+	 */
  }
