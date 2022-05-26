@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/26 17:14:55 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/26 17:28:26 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int prompt(t_env *env)
     {
         command = readline(">> ");
 		add_history(command);
-		printf("%s\n", parse_env(multi_space(command)));
 		tree = make_pipe(parse_env(multi_space(command)));
 		if (!tree)
 			continue ;

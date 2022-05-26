@@ -7,7 +7,7 @@ static int	key_length(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == ' ' || s[i] == '$')
+		if (s[i] == ' ' || s[i] == '$' || s[i] == '\"')
 			break ;
 		i++;
 	}
