@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/26 21:03:26 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/26 21:17:21 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ void	node_execute(t_node *node, t_env *env)
 		node_execute(node->right, env);
 }
 
+static void free_s(char *tmp, char *tmp1, char *command)
+{
+	free(tmp);
+	free(tmp1);
+	free(command);
+}
+
 int prompt(t_env *env)
 {
     char    *command;
@@ -81,12 +88,13 @@ int prompt(t_env *env)
 		tmp1 = parse_env(tmp);
 		tree = make_pipe(tmp1);
 		if (!tree)
+		{
+			free_s(tmp, tmp1, command);
 			continue ;
-//		node_execute(tree, env);
+		}
+		node_execute(tree, env);
 		free_tree(&tree);
-		free(command);
-		free(tmp);
-		free(tmp1);
+		free_s(tmp, tmp1, command);
 		tree = NULL;
     }
 }

@@ -13,6 +13,20 @@ static char	*split_space(char *s)
 
 	}
 */
+
+static void	free_s(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
+}
+
 int	cmd_execute(t_env **env, char *cmd, char *option)
 {
 	char	**split;
@@ -37,5 +51,6 @@ int	cmd_execute(t_env **env, char *cmd, char *option)
 	}
 	else
 		system(option);
+	free_s(split);
 	return (0);
 }
