@@ -28,16 +28,15 @@ void	new_env(t_env **env, char *s)
 		return ;
 	if (*env != NULL)
 	{
+		tmp = search_env(*env, env_split(s)[0]);
+		if (tmp)
+		{
+			tmp->value = env_split(s)[1];
+			return ;
+		}
 		tmp = *env;
 		while (tmp->next != NULL)
-		{
-			if (!ft_strcmp(tmp->key, env_split(s)[0]))
-			{
-				tmp->value = env_split(s)[1];
-				return ;
-			}
 			tmp = tmp->next;
-		}
 	}
 	new_node = malloc_s(sizeof(t_env));
 	new_node->key = env_split(s)[0];
@@ -49,15 +48,17 @@ void	new_env(t_env **env, char *s)
 		tmp->next = new_node;
 }
 
-char	*search_env(t_env *env, char *s)
+t_env	*search_env(t_env *env, char *s)
 {
 	t_env	*tmp;
 
+	if (!env)
+		return (0);
 	tmp = env;
-	while (!tmp->next)
+	while (tmp)
 	{
 		if (!ft_strcmp(tmp->key, s))
-			return (tmp->key);
+			return (tmp);
 		tmp = tmp->next;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/23 19:47:58 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/26 16:52:36 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	**parse_redirect(char *s);
 char	**parse_redirects(char *s);
 char	**parse_cmd(char *s);
 char	**parse_simplecmd(char *s);
+char	*parse_env(char *s);
 
 t_node	*make_cmd(char *s);
 t_node	*make_pipe(char *s);
@@ -61,7 +62,7 @@ t_node	*make_argv(char *s);
 
 char	**env_split(char *s);
 void	new_env(t_env **env, char *s);
-char	*search_env(t_env *env, char *s);
+t_env	*search_env(t_env *env, char *s);
 void	delete_env(t_env **env, char *s);
 void	print_env(t_env **env);
 t_env	*env_init(char **s);

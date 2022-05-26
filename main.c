@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/23 21:05:03 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/26 17:14:55 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,17 @@ int prompt(t_env *env)
     char    **tokens;
     int     nr_tokens;
 	t_node	*tree;
-    
+	
+	tree = NULL;
     while (1)
     {
         command = readline(">> ");
 		add_history(command);
-		tree = make_pipe(multi_space(command));
+		printf("%s\n", parse_env(multi_space(command)));
+		tree = make_pipe(parse_env(multi_space(command)));
+		if (!tree)
+			continue ;
+	//	tree = make_pipe(parse_env(multi_space(command)));
 //		tree = make_pipe(command);
 	//	node_search(tree, "root");
 		node_execute(tree, env);
