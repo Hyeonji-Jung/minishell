@@ -2,5 +2,6 @@
 
 void	cmd_exit(void)
 {
+	system("leaks minishell");
 	exit(0);
 }

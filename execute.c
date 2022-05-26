@@ -31,7 +31,10 @@ int	cmd_execute(t_env **env, char *cmd, char *option)
 	else if (!ft_strcmp(cmd, "unset"))
 		cmd_unset(env, split[1]);
 	else if (!ft_strcmp(cmd, "exit"))
+	{
+		free_env(env);
 		cmd_exit();
+	}
 	else
 		system(option);
 	return (0);

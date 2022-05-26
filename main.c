@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/26 17:28:26 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/26 21:03:26 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	node_execute(t_node *node, t_env *env)
 int prompt(t_env *env)
 {
     char    *command;
-    char    **tokens;
-    int     nr_tokens;
+	char	*tmp;
+	char	*tmp1;
 	t_node	*tree;
 	
 	tree = NULL;
@@ -77,13 +77,16 @@ int prompt(t_env *env)
     {
         command = readline(">> ");
 		add_history(command);
-		tree = make_pipe(parse_env(multi_space(command)));
+		tmp = multi_space(command);
+		tmp1 = parse_env(tmp);
+		tree = make_pipe(tmp1);
 		if (!tree)
 			continue ;
-	//	tree = make_pipe(parse_env(multi_space(command)));
-//		tree = make_pipe(command);
-	//	node_search(tree, "root");
-		node_execute(tree, env);
+//		node_execute(tree, env);
+		free_tree(&tree);
+		free(command);
+		free(tmp);
+		free(tmp1);
 		tree = NULL;
     }
 }
@@ -94,9 +97,7 @@ int	main(int argc, char *argv[], char *envp[])
 	
 	env = env_init(envp);
 	prompt(env);
-	int i = 0;
 
-//	prompt();
 /*	char *s = argv[1];
      t_node                  *tree;
 //     signal(SIGINT, catch_signal);
@@ -106,4 +107,5 @@ int	main(int argc, char *argv[], char *envp[])
      g_foreground = 0;
 	 node_search(tree, "root");
 	 */
- }
+}
+

@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/26 16:52:36 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/26 20:13:18 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*multi_space(char *s);
 char	**ft_split(char *s, char c);
+void	free_tree(t_node **node);
+void	free_env(t_env **env);
 
 int		signal_catch(int sig);
 
