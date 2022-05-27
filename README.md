@@ -50,9 +50,9 @@ REDIRECT ->     left: type,                  right: file_name
     - [] 명령어 기다릴 때 프롬프트 보여야 함
     - [] 최초 자식 process 생성
     - [] 부모 프로세스에서 pipe, cmd node에 따라 fork 및 pipe 처리 잘 해주어야 함
-    - [] builtin 처리
-      - [] echo -n
-      - [] cd 상대경로/절대경로
+    - [v] builtin 처리
+      - [v] echo -n
+      - [v] cd 상대경로/절대경로
       - [v] pwd
       - [v] export
       - [v] unset
