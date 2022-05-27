@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/26 21:17:21 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/27 18:29:00 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,48 @@ void	node_search(t_node *node, char *s)
 		
 }
 
-void	node_execute(t_node *node, t_env *env)
+void	node_execute(t_info **info, t_node *node)
 {
+	int	fd;
+
+	fd = -1;
 	if (node->type == SIMPLECMD)
 	{
 		if (node->right != NULL)
-			cmd_execute(&env, node->left->content, node->right->content);
+			cmd_execute(info, node->left->content, node->right->content);
 		else
-			cmd_execute(&env, node->left->content, NULL);
+			cmd_execute(info, node->left->content, NULL);
+	}
+	else if (node->type == REDIRECT)
+	{
+		fd = redirect_execute(info, node->left->content, node->right->content);
+		if (fd < 0)
+			return ;
+		else
+			new_fd(&(*info)->fd, fd);
+
 	}
 	if (node->left)
-		node_execute(node->left, env);
+		node_execute(info, node->left);
 	if (node->right)
-		node_execute(node->right, env);
+		node_execute(info, node->right);
+	if (fd != -1)
+	{
+		close(fd);
+	}
 }
 
-static void free_s(char *tmp, char *tmp1, char *command)
+static void free_s(char **tmp, char **tmp1, char **command)
 {
-	free(tmp);
-	free(tmp1);
-	free(command);
+	free(*tmp);
+	*tmp = NULL;
+	free(*tmp1);
+	*tmp1 = NULL;
+	free(*command);
+	*command = NULL;
 }
 
-int prompt(t_env *env)
+int prompt(t_info **info)
 {
     char    *command;
 	char	*tmp;
@@ -85,26 +104,36 @@ int prompt(t_env *env)
         command = readline(">> ");
 		add_history(command);
 		tmp = multi_space(command);
+		if (!tmp)
+			continue ;
 		tmp1 = parse_env(tmp);
-		tree = make_pipe(tmp1);
-		if (!tree)
+		(*info)->tree = make_pipe(tmp1);
+		if (!(*info)->tree)
 		{
-			free_s(tmp, tmp1, command);
+			free_s(&tmp, &tmp1, &command);
 			continue ;
 		}
-		node_execute(tree, env);
-		free_tree(&tree);
-		free_s(tmp, tmp1, command);
-		tree = NULL;
+		node_execute(info, (*info)->tree);
+		free_tree(&(*info)->tree);
+		free_s(&tmp, &tmp1, &command);
+		dup2((*info)->old_stdin, STDIN_FILENO);
+		dup2((*info)->old_stdout, STDOUT_FILENO);
+		(*info)->tree = NULL;
     }
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_env	*env;
+	t_info	*info;
 	
+	info = malloc_s(sizeof(t_info));
+	info->old_stdin = dup(STDIN_FILENO);
+	info->old_stdout = dup(STDOUT_FILENO);
+	info->fd = NULL;
 	env = env_init(envp);
-	prompt(env);
+	info->env = env;
+	prompt(&info);
 
 /*	char *s = argv[1];
      t_node                  *tree;

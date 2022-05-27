@@ -74,6 +74,8 @@ char	*parse_env(char *s)
 	int		key_len;
 	char	*ret;
 
+	if (!s)
+		return (0);
 	ret = NULL;
 	quote = 0;
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/26 20:13:18 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/27 18:11:57 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <signal.h>
+# include <fcntl.h>
 # include <sys/ioctl.h>
 # include <sys/wait.h>
 # include <readline/readline.h>
@@ -74,7 +75,15 @@ void	cmd_exit(void);
 int		cmd_env(t_env *env);
 int		cmd_export(t_env **env, char *s);
 int		cmd_unset(t_env **env, char *s);
-int		cmd_execute(t_env **env, char *cmd, char *option);
 int		cmd_cd(char *s);
+
+int		cmd_execute(t_info **info, char *cmd, char *option);
+int		redirect_execute(t_info **info, char *type, char *file_name);
+
+int		input(char *s);
+int		overwrite(char *s);
+int		append(char *s);
+
+void	new_fd(t_fd **fd, int new_fd);
 
 #endif
