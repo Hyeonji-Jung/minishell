@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/27 18:11:57 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/27 18:50:57 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	delete_env(t_env **env, char *s);
 void	print_env(t_env **env);
 t_env	*env_init(char **s);
 
-char	*cmd_pwd(void);
+void	cmd_pwd(void);
 void	cmd_exit(void);
 int		cmd_env(t_env *env);
 int		cmd_export(t_env **env, char *s);

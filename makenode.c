@@ -48,6 +48,7 @@ t_node	*make_simplecmd(char *s)
 	node->left = make_filepath(split[0]);
 	node->right = make_argv(split[1]);
 	free(split);
+	free(s);
 	return (node);
 }
 
@@ -64,6 +65,7 @@ t_node	*make_redirects(char *s)
 	split = parse_redirects(node->content);
 	node->left = make_redirect(split[0]);
 	node->right = make_redirects(split[1]);
+	free(s);
 	free(split);
 	return (node);
 }
@@ -81,6 +83,7 @@ t_node	*make_redirect(char *s)
 	split = parse_redirect(node->content);
 	node->left = make_type(split[0]);
 	node->right = make_filename(split[1]);
+	free(s);
 	free(split);
 	return (node);
 }
