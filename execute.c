@@ -33,7 +33,7 @@ int	cmd_execute(t_info **info, char *cmd, char *option)
 
 	split = ft_split(option, ' ');
 	if (!ft_strcmp(cmd, "echo"))
-		;
+		cmd_echo(option);
 	else if (!ft_strcmp(cmd, "cd"))
 		cmd_cd(split[1]);
 	else if (!ft_strcmp(cmd, "pwd"))

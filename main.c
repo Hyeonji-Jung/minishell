@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/27 19:28:34 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/27 21:07:15 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int prompt(t_info **info)
 		tmp = multi_space(command);
 		if (!tmp)
 			continue ;
-		tmp1 = parse_env(tmp);
+		tmp1 = parse_env(tmp, (*info)->env);
 		(*info)->tree = make_pipe(tmp1);
 		if (!(*info)->tree)
 		{

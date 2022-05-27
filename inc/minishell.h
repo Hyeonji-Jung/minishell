@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/27 18:50:57 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/05/27 21:04:37 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**parse_redirect(char *s);
 char	**parse_redirects(char *s);
 char	**parse_cmd(char *s);
 char	**parse_simplecmd(char *s);
-char	*parse_env(char *s);
+char	*parse_env(char *s, t_env *env);
 
 t_node	*make_cmd(char *s);
 t_node	*make_pipe(char *s);
@@ -76,6 +76,7 @@ int		cmd_env(t_env *env);
 int		cmd_export(t_env **env, char *s);
 int		cmd_unset(t_env **env, char *s);
 int		cmd_cd(char *s);
+void	cmd_echo(char *s);
 
 int		cmd_execute(t_info **info, char *cmd, char *option);
 int		redirect_execute(t_info **info, char *type, char *file_name);

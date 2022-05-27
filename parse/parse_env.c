@@ -52,13 +52,22 @@ void	before_env(char **ret, char *s, int save, int i)
 	free(tmp);
 }
 
-void	after_env(char **ret, char *s, int i, int key_len)
+void	after_env(char **ret, char *s, int i, t_env *env)
 {
 	char	*tmp;
 	char	*tmp1;
+	t_env	*ret_env;
 
-	tmp = ft_substr(&s[i + 1], 0, key_len);
-	tmp1 = getenv(tmp);
+//	tmp = ft_substr(&s[i + 1], 0, key_len);
+	tmp = ft_substr(&s[i + 1], 0, key_length(&s[i + 1]));
+//	tmp1 = getenv(tmp);
+	ret_env = search_env(env, tmp);
+	if (!ret_env)
+	{
+		free(tmp);
+		return ;
+	}
+	tmp1 = ret_env->value;
 	free(tmp);
 	tmp = convert_env(*ret, tmp1);
 	if (*ret != tmp)
@@ -66,7 +75,7 @@ void	after_env(char **ret, char *s, int i, int key_len)
 	*ret = tmp;
 }
 
-char	*parse_env(char *s)
+char	*parse_env(char *s, t_env *env)
 {
 	int		quote;
 	int		i;
@@ -88,7 +97,7 @@ char	*parse_env(char *s)
 		{
 			key_len = key_length(&s[i + 1]);
 			before_env(&ret, s, save, i);
-			after_env(&ret, s, i, key_len);
+			after_env(&ret, s, i, env);
 			save = i + key_len + 1;
 			i += key_len;
 		}
