@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/02 15:02:24 by hyeojung         ###   ########.fr       */
+/*   Updated: 2022/06/02 16:01:37 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <signal.h>
+# include <fcntl.h>
 # include <limits.h>
 # include <sys/ioctl.h>
 # include <sys/wait.h>
@@ -41,14 +42,17 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*multi_space(char *s);
 char	**ft_split(char *s, char c);
 int     ft_isalpha(char c);
+void	free_tree(t_node **node);
+void	free_env(t_env **env);
 
-int		signal_catch(int sig);
+void	signal_catch(int sig);
 
 char	**parse_pipe(char *s);
 char	**parse_redirect(char *s);
 char	**parse_redirects(char *s);
 char	**parse_cmd(char *s);
 char	**parse_simplecmd(char *s);
+char	*parse_env(char *s, t_env *env);
 
 t_node	*make_cmd(char *s);
 t_node	*make_pipe(char *s);
@@ -63,7 +67,7 @@ t_node	*make_argv(char *s);
 
 char	**env_split(char *s);
 void	new_env(t_env **env, char *s);
-char	*search_env(t_env *env, char *s);
+t_env	*search_env(t_env *env, char *s);
 void	delete_env(t_env **env, char *s);
 void	print_env(t_env **env);
 t_env	*env_init(char **s);
@@ -73,9 +77,17 @@ void	cmd_exit(void);
 int		cmd_env(t_env *env);
 int		cmd_export(t_env **env, char *s);
 int		cmd_unset(t_env **env, char *s);
-int		cmd_execute(t_env **env, char *cmd, char *option);
 int		cmd_cd(char *s);
 int     cmd_echo(char **strs);
+
+int		cmd_execute(t_info **info, char *cmd, char *option);
+int		redirect_execute(char *type, char *file_name);
+
+int		input(char *s);
+int		overwrite(char *s);
+int		append(char *s);
+
+void	new_fd(t_fd **fd, int new_fd);
 
 int     chk_command(char *command);
 

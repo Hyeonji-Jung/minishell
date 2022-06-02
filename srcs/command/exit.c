@@ -7,5 +7,6 @@ void	cmd_exit(void)
 	* 프로그램 종료 경우가 여러 가지 있음! signal(Ctrl-D), exit 명령어
 	* 이때 내부적으로 어떻게 다르게 처리할지 고민해 보자 !
 	*/
+	system("leaks minishell");
 	exit(0);
 }

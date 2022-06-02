@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:13:29 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/05/22 18:03:46 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/02 15:38:41 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,20 @@ typedef struct s_env
 	char			*value;
 	struct s_env	*next;
 }	t_env;
+
+typedef struct s_fd
+{
+	int			num;
+	struct s_fd	*next;
+}	t_fd;
+
+typedef struct	s_info
+{
+	t_node	*tree;
+	t_env	*env;
+	t_fd	*fd;
+	int		old_stdin;
+	int		old_stdout;
+}	t_info;
 
 #endif

@@ -29,6 +29,8 @@ static int	cnt_len(char *s)
 	int	i;
 	int	cnt;
 
+	if (!s)
+		return (0);
 	i = -1;
 	cnt = 0;
 	while (s[++i])
@@ -57,6 +59,8 @@ char	*multi_space(char *s)
 	int		len;
 	char	*ret;
 
+	if (!s)
+		return (0);
 	len = cnt_len(s);
 	i = -1;
 	ret = malloc_s(sizeof(char) * (len + 1));
