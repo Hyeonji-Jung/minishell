@@ -30,7 +30,7 @@ char	**parse_cmd(char *s)
 	ret = malloc_s(sizeof(char *) * 2);
 	if (loc == ft_strlen(s))
 	{
-		ret[0] = s;
+		ret[0] = ft_strdup(s);
 		ret[1] = NULL;
 	}
 	else

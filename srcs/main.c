@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/02 17:30:25 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/02 20:48:22 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,44 +23,20 @@ void	node_search(t_node *node, char *s)
 		node_search(node->right, ft_strjoin(s, "->right"));
 }
 
-void	node_execute(t_info **info, t_node *node)
-{
-//	int	fd;
 
-//	fd = -1;
-	if ((*info)->fd < 0)
-		return ;
-	if (node->type == SIMPLECMD)
-	{
-		if (node->right != NULL)
-			cmd_execute(info, node->left->content, node->right->content);
-		else
-			cmd_execute(info, node->left->content, NULL);
-	}
-	else if(node->type == REDIRECT)
-	{
-		(*info)->fd = redirect_execute(node->left->content, node->right->content);
-//		if (fd < 0)
-//			return ;
-//		else
-//			new_fd(&(*info)->fd, fd);
-	}
-	if (node->left)
-		node_execute(info, node->left);
-	if (node->right)
-		node_execute(info, node->right);
-	if ((*info)->fd != -1)
-		close((*info)->fd);
-}
-
-static void free_s(char **tmp, char **tmp1, char **command)
+static void free_s(char **tmp, char **command, t_info **info)
 {
-	free(*tmp);
-	*tmp = NULL;
-	free(*tmp1);
-	*tmp1 = NULL;
+	if (*tmp)
+	{
+		free(*tmp);
+		*tmp = NULL;
+	}
 	free(*command);
 	*command = NULL;
+	dup2((*info)->old_stdin, STDIN_FILENO);
+	dup2((*info)->old_stdout, STDOUT_FILENO);
+	(*info)->tree = NULL;
+	(*info)->fd = 0;
 }
 
 int prompt(t_info **info)
@@ -76,27 +52,21 @@ int prompt(t_info **info)
 		// signal 중 interrupt 있으면 다른 프롬프트 표시되어야 함 🙂: 보통 😡: interrupt로 하는 거 어떨까
         command = readline("🙂 ➡️ ");
 		add_history(command);
+		if (chk_command(command))
+			continue ;
 		tmp = multi_space(command);
 		if (!tmp)
 			continue ;
 		tmp1 = parse_env(tmp, (*info)->env);
 		(*info)->tree = make_pipe(tmp1);
-//		if (!chk_command(command))
-//			(*info)->tree = make_pipe(tmp1);
-//		else
-//			printf("ERROR: 어쩌구\n");
 		if (!(*info)->tree)
 		{
-			free_s(&tmp, &tmp1, &command);
+			free_s(&tmp, &command, info);
 			continue ;
 		}
 		node_execute(info, (*info)->tree);
 		free_tree(&(*info)->tree);
-		free_s(&tmp, &tmp1, &command);
-		dup2((*info)->old_stdin, STDIN_FILENO);
-		dup2((*info)->old_stdout, STDOUT_FILENO);
-		(*info)->tree = NULL;
-		(*info)->fd = 0;
+		free_s(&tmp, &command, info);
     }
 }
 

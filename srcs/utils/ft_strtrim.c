@@ -6,7 +6,7 @@
 /*   By: junpkim <junpkim@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 21:58:11 by junpkim           #+#    #+#             */
-/*   Updated: 2022/06/02 15:59:44 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/02 19:17:33 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*ft_strdup(char *s)
 	int		i;
 	char	*ret;
 
-	ret = malloc(sizeof(char) * ft_strlen(s) + 1);
+	ret = malloc_s(sizeof(char) * ft_strlen(s) + 1);
 	ret[ft_strlen(s)] = '\0';
 	i = 0;
 	while (s[i])

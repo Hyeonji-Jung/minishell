@@ -30,13 +30,13 @@ char	**parse_simplecmd(char *s)
 	ret = malloc_s(sizeof(char *) * 2);
 	if (loc == ft_strlen(s))
 	{
-		ret[0] = s;
-		ret[1] = s;
+		ret[0] = ft_strdup(s);
+		ret[1] = ft_strdup(s);
 	}
 	else
 	{
 		ret[0] = ft_substr(s, 0, loc);
-		ret[1] = s;
+		ret[1] = ft_strdup(s);
 //		ret[1] = ft_substr(s, loc + 1, ft_strlen(s) - loc);
 	}
 	return (ret);

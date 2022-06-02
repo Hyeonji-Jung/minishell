@@ -1,18 +1,58 @@
 #include "minishell.h"
 
-/*
-static char	*split_space(char *s)
+void	new_process(t_info **info, t_node *node)
 {
-	char	**ret;
-	int		i;
+	pid_t	pid;
+	int		fd[2];
 
-	ret = malloc_s(sizeof(char *) * cnt_len(s));
-	i = 0;
-	while (i < cnt_len(s))
+	if (pipe(fd) == -1)
 	{
-
+		print_error("pipe error");
+		return ;
 	}
-*/
+	pid = fork();
+	if (pid == 0)
+	{
+		dup2(fd[1], 1);
+		close(fd[0]);
+		node_execute(info, node->left);
+		exit(0);
+	}
+	else
+	{
+		waitpid(-1, NULL, 0);
+		dup2(fd[0], 0);
+		close(fd[1]);
+		node_execute(info, node->right);
+	}
+}
+
+void	node_execute(t_info **info, t_node *node)
+{
+	if ((*info)->fd < 0)
+		return ;
+	if (node->type == SIMPLECMD)
+	{
+		if (node->right != NULL)
+			cmd_execute(info, node->left->content, node->right->content);
+		else
+			cmd_execute(info, node->left->content, NULL);
+	}
+	else if (node->type == REDIRECT)
+		(*info)->fd = redirect_execute(node->left->content, node->right->content);
+	else if (node->type == PIPE && node->right)
+		new_process(info, node);
+	else
+	{
+		if (node->left)
+			node_execute(info, node->left);
+		if (node->right)
+			node_execute(info, node->right);
+	}
+	if ((*info)->fd != -1)
+		close((*info)->fd);
+
+}
 
 static void free_s(char **s)
 {
