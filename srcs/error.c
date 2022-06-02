@@ -22,4 +22,9 @@ int	chk_command(char *command)
 	return (0);
 }
 
+void	print_error(char *s)
+{
+	printf("error : %s\n", s);
+}
+
 // void	exit_shell()

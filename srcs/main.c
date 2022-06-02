@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/02 16:18:55 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/02 17:30:25 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ void	node_search(t_node *node, char *s)
 
 void	node_execute(t_info **info, t_node *node)
 {
-	int	fd;
+//	int	fd;
 
-	fd = -1;
+//	fd = -1;
+	if ((*info)->fd < 0)
+		return ;
 	if (node->type == SIMPLECMD)
 	{
 		if (node->right != NULL)
@@ -37,18 +39,18 @@ void	node_execute(t_info **info, t_node *node)
 	}
 	else if(node->type == REDIRECT)
 	{
-		fd = redirect_execute(node->left->content, node->right->content);
-		if (fd < 0)
-			return ;
-		else
-			new_fd(&(*info)->fd, fd);
+		(*info)->fd = redirect_execute(node->left->content, node->right->content);
+//		if (fd < 0)
+//			return ;
+//		else
+//			new_fd(&(*info)->fd, fd);
 	}
 	if (node->left)
 		node_execute(info, node->left);
 	if (node->right)
 		node_execute(info, node->right);
-	if (fd != -1)
-		close(fd);
+	if ((*info)->fd != -1)
+		close((*info)->fd);
 }
 
 static void free_s(char **tmp, char **tmp1, char **command)
@@ -94,6 +96,7 @@ int prompt(t_info **info)
 		dup2((*info)->old_stdin, STDIN_FILENO);
 		dup2((*info)->old_stdout, STDOUT_FILENO);
 		(*info)->tree = NULL;
+		(*info)->fd = 0;
     }
 }
 
@@ -107,7 +110,7 @@ int	main(int argc, char *argv[], char *envp[])
 	info = malloc_s(sizeof(t_info));
 	info->old_stdin = dup(STDIN_FILENO);
 	info->old_stdout = dup(STDOUT_FILENO);
-	info->fd = NULL;
+	info->fd = 0;
 	env = env_init(envp);
 	info->env = env;
 	if (argc == 1)

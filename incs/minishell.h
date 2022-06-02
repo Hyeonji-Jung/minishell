@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/02 16:45:15 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/02 17:26:34 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int		append(char *s);
 void	new_fd(t_fd **fd, int new_fd);
 
 int     chk_command(char *command);
+void	print_error(char *s);
 
 #endif

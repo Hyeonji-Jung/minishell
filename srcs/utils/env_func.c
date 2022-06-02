@@ -23,7 +23,7 @@ void	delete_env(t_env **env, char *s)
 	t_env	*del;
 
 	tmp = *env;
-	while (ft_strcmp(tmp->next->key, s))
+	while (tmp->next != NULL && ft_strcmp(tmp->next->key, s))
 		tmp = tmp->next;
 	if (tmp->next == NULL)
 		return ;
