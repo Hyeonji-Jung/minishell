@@ -30,6 +30,22 @@ t_env	*make_new(char **split)
 	return (ret);
 }
 
+int	chk_env(t_env **env, char **s)
+{
+	t_env	*tmp;
+
+	tmp = search_env(*env, s[0]);
+	if (tmp)
+	{
+		free(tmp->value);
+		tmp->value = s[1];
+		free(s[0]);
+		free(s);
+		return (1);
+	}
+	return (0);
+}
+
 void	new_env(t_env **env, char *s)
 {
 	t_env	*new_node;
@@ -41,14 +57,8 @@ void	new_env(t_env **env, char *s)
 		return ;
 	if (*env != NULL)
 	{
-		tmp = *env;
-		tmp = search_env(*env, split[0]);
-		if (tmp)
-		{
-			tmp->value = split[1];
+		if (chk_env(env, split))
 			return ;
-		}
-		free(tmp);
 		tmp = *env;
 		while (tmp->next != NULL)
 			tmp = tmp->next;
