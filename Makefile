@@ -1,21 +1,31 @@
-CC = GCC
-FLAGS = -g -Wall -Wextra -Werror -lreadline
-NAME = minishell
-SRCS = init.c main.c makenode.c make_leaf.c signal.c parse/parse_pipe.c parse/parse_redirect.c parse/parse_redirects.c parse/parse_cmd.c parse/parse_simplecmd.c make_env.c execute.c
-UTILS = utils/ft_isalpha.c utils/ft_strlen.c utils/ft_strncmp.c utils/ft_substr.c utils/malloc_s.c utils/utils.c utils/ft_strjoin.c utils/multi_space.c utils/ft_strtrim.c utils/env_func.c utils/ft_split.c
-CMDS = command/exit.c command/env.c command/export.c command/unset.c command/pwd.c command/echo.c command/cd.c
+NAME =	minishell
+CC =	gcc
+FLAGS = -Wall -Wextra -Werror -I incs/
+MAIN =	main make_env make_leaf make_node signal execute error
+PARSE =	parse_cmd parse_pipe parse_redirect parse_redirects parse_simplecmd
+UTILS =	env_func ft_isalpha ft_split ft_strjoin ft_strlen ft_strncmp ft_strtrim malloc_s multi_space utils
+CMDS =	exit env export unset pwd echo cd
 
-OBJS = $(SRCS:%.c=%.o) $(UTILS:%.c=%.o) $(CMDS:%.c=%.o)
+SRCS =  $(addsuffix .c, $(addprefix srcs/, $(MAIN))) \
+		$(addsuffix .c, $(addprefix srcs/parse/, $(PARSE))) \
+	  	$(addsuffix .c, $(addprefix srcs/utils/, $(UTILS))) \
+	  	$(addsuffix .c, $(addprefix srcs/command/, $(CMDS)))
+OBJS = 	$(SRCS:c=o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
+%.o: %.c
+	$(CC) $(FLAGS) -c $< -o $@
+
 clean :
-	rm -rf $(OBJS)
+	rm -f $(OBJS)
 
 fclean :
-	rm -rf $(OBJS) $(NAME)
+	rm -f $(OBJS) $(NAME)
 
 re : fclean all
+
+.PHONY: all clean fclean re

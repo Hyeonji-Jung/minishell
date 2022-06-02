@@ -31,9 +31,9 @@ REDIRECT ->     left: type,                  right: file_name
 
 기능 구현 목록
 - [] parsing
-  - [] parsing 전 에러 처리
-    - [] quote, double quote가 홀수인 경우
-    - [] - 다음에 문자 없는 경우
+  - [v] parsing 전 에러 처리
+    - [v] quote, double quote가 홀수인 경우
+    - [v] - 다음에 문자 없는 경우
   - [] tokenization
     - [v] pipe 기준
     - [v] redirects(<, >, <<, >>) 기준
@@ -47,17 +47,18 @@ REDIRECT ->     left: type,                  right: file_name
     - [v] 트리화 기준에 따라 트리 만들기
 - [] execute
   - [] 트리 순회하며 명령어 실행하기
-    - [] 명령어 기다릴 때 프롬프트 보여야 함
+    - [v] 명령어 기다릴 때 프롬프트 보여야 함
+    - [] interrupt 상태일 경우 (ctrl-C signal, 이상한 명령어 들어온 경우 등) 다른 프롬프트 보여야 함
     - [] 최초 자식 process 생성
     - [] 부모 프로세스에서 pipe, cmd node에 따라 fork 및 pipe 처리 잘 해주어야 함
-    - [v] builtin 처리
-      - [v] echo -n
-      - [v] cd 상대경로/절대경로
-      - [v] pwd
-      - [v] export
-      - [v] unset
-      - [v] env
-      - [v] exit
+    - [] builtin 처리
+      - [] echo (enable -n)
+      - [v] cd 상대경로/절대경로 (no options)
+      - [v] pwd (no options)
+      - [] export (no options)
+      - [] unset (no options)
+      - [v] env (no options, no arguments)
+      - [] exit (no options)
     - [] signal 처리
       - [] ctrl-C
       - [] ctrl-D
@@ -65,6 +66,10 @@ REDIRECT ->     left: type,                  right: file_name
     - [] redirects 처리
       - [] 존재하지 않는 파일 열거나 읽는 경우 예외 처리
       - [] 파일 생성 및 읽기 잘못된 경우 예외 처리 등등
-    - [v] 환경변수($) 처리
+    - [p] 환경변수($) 처리
   - [] 마지막 자식 프로세스 종료 후 모든 메모리 해제 등 깔끔한 마무리
   - [v] 이전 명령어 history 조회
+  - [] error 처리
+    - [] interrupt
+    - [] command not found (이상한 명령어 혹은 구현 안해도 되는 명령어)
+    - [] 또 머가 있을지 고민 중
