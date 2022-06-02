@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/02 16:01:37 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/02 16:45:15 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	**ft_split(char *s, char c);
 int     ft_isalpha(char c);
 void	free_tree(t_node **node);
 void	free_env(t_env **env);
+char	*ft_itoa(int n);
 
 void	signal_catch(int sig);
 

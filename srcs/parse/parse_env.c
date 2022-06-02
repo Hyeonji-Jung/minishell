@@ -58,18 +58,22 @@ void	after_env(char **ret, char *s, int i, t_env *env)
 	char	*tmp1;
 	t_env	*ret_env;
 
-//	tmp = ft_substr(&s[i + 1], 0, key_len);
 	tmp = ft_substr(&s[i + 1], 0, key_length(&s[i + 1]));
-//	tmp1 = getenv(tmp);
-	ret_env = search_env(env, tmp);
-	if (!ret_env)
+	if (!ft_strcmp(tmp, "?"))
+		tmp1 = ft_itoa(g_foreground);
+	else
 	{
-		free(tmp);
-		return ;
+		ret_env = search_env(env, tmp);
+		if (!ret_env)
+		{
+			free(tmp);
+			return ;
+		}
+		tmp1 = ret_env->value;
 	}
-	tmp1 = ret_env->value;
 	free(tmp);
 	tmp = convert_env(*ret, tmp1);
+	free(tmp1);
 	if (*ret != tmp)
 		free(*ret);
 	*ret = tmp;
