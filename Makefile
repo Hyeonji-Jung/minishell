@@ -1,6 +1,6 @@
 NAME =	minishell
 CC =	gcc
-FLAGS = -Wall -I incs/ -lreadline
+FLAGS = -Wall -Wextra -Werror -I incs/ -lreadline
 MAIN =	main make_env make_leaf make_node signal execute error make_fd redirect
 PARSE =	parse_cmd parse_pipe parse_redirect parse_redirects parse_simplecmd parse_env
 UTILS =	env_func ft_isalpha ft_split ft_strjoin ft_strlen ft_strncmp ft_strtrim malloc_s multi_space utils free_all ft_substr ft_itoa
