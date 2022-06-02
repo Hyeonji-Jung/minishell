@@ -39,7 +39,8 @@ void	node_execute(t_info **info, t_node *node)
 			cmd_execute(info, node->left->content, NULL);
 	}
 	else if (node->type == REDIRECT)
-		(*info)->fd = redirect_execute(node->left->content, node->right->content);
+		(*info)->fd = redirect_execute(node->left->content,
+				node->right->content);
 	else if (node->type == PIPE && node->right)
 		new_process(info, node);
 	else
@@ -51,10 +52,9 @@ void	node_execute(t_info **info, t_node *node)
 	}
 	if ((*info)->fd != -1)
 		close((*info)->fd);
-
 }
 
-static void free_s(char **s)
+static void	free_s(char **s)
 {
 	int	i;
 

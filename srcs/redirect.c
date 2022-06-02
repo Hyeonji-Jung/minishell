@@ -15,7 +15,7 @@ int	input(char *s)
 	return (fd);
 }
 
-int overwrite(char *s)
+int	overwrite(char *s)
 {
 	int	fd;
 

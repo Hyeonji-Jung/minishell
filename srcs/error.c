@@ -2,8 +2,8 @@
 
 int	chk_command(char *command)
 {
-	int quote;
-	int d_quote;
+	int	quote;
+	int	d_quote;
 
 	quote = 0;
 	d_quote = 0;

@@ -1,6 +1,5 @@
 #include "minishell.h"
 
-
 t_env	*search_env(t_env *env, char *s)
 {
 	t_env	*tmp;

@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/02 20:48:22 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/02 21:20:00 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@ void	node_search(t_node *node, char *s)
 {
 //	if (node->content)
 //	if (!node->left)
-		printf("%s: %s\n", s, node->content);
+	printf("%s: %s\n", s, node->content);
 	if (node->left)
 		node_search(node->left, ft_strjoin(s, "->left"));
 	if (node->right)
 		node_search(node->right, ft_strjoin(s, "->right"));
 }
 
-
-static void free_s(char **tmp, char **command, t_info **info)
+static void	free_s(char **tmp, char **command, t_info **info)
 {
 	if (*tmp)
 	{
@@ -39,18 +38,18 @@ static void free_s(char **tmp, char **command, t_info **info)
 	(*info)->fd = 0;
 }
 
-int prompt(t_info **info)
+int	prompt(t_info **info)
 {
-    char    *command;
+	char	*command;
 	char	*tmp;
 	char	*tmp1;
 	t_node	*tree;
 
 	tree = NULL;
-    while (1)
-    {
+	while (1)
+	{
 		// signal 중 interrupt 있으면 다른 프롬프트 표시되어야 함 🙂: 보통 😡: interrupt로 하는 거 어떨까
-        command = readline("🙂 ➡️ ");
+		command = readline("🙂 ➡️ ");
 		add_history(command);
 		if (chk_command(command))
 			continue ;
@@ -67,7 +66,7 @@ int prompt(t_info **info)
 		node_execute(info, (*info)->tree);
 		free_tree(&(*info)->tree);
 		free_s(&tmp, &command, info);
-    }
+	}
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -85,7 +84,6 @@ int	main(int argc, char *argv[], char *envp[])
 	info->env = env;
 	if (argc == 1)
 		prompt(&info);
-
 	argv[0] = argv[0];
 //	prompt();
 /*	char *s = argv[1];

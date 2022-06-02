@@ -1,8 +1,8 @@
 #include "minishell.h"
 
-int cmd_echo(char **strs)
+int	cmd_echo(char **strs)
 {
-    int		i;
+	int	i;
 
 	if (!ft_strcmp(strs[1], "-n"))
 		i = 1;
