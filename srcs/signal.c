@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/02 15:56:17 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/03 16:15:17 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	signal_catch(int sig)
 	{
 		g_foreground = 130;
 		rl_on_new_line();
-//		rl_replace_line("", 1);
+	//	rl_replace_line("", 1);
 		rl_redisplay();
 	}
 	else if (sig == SIGQUIT)
 	{
-		g_foreground = 131;
+		return ;
 	}
 }

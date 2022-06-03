@@ -85,10 +85,7 @@ int	cmd_execute(t_info **info, char *cmd, char *option)
 	else if (!ft_strcmp(cmd, "unset"))
 		cmd_unset(&(*info)->env, split[1]);
 	else if (!ft_strcmp(cmd, "exit"))
-	{
-		free_env(&(*info)->env);
-		cmd_exit();
-	}
+		cmd_exit(info);
 	else
 		system(option); // system 함수가 사용가능한 함수 목록에 없어서 바꿔야 할 거 같음
 	free_s(split);

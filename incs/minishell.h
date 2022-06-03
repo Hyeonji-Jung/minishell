@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/02 19:17:00 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/03 16:13:29 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <dirent.h>
 # include <term.h>
+# include <termios.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -28,6 +29,8 @@
 
 # include "define.h"
 # include "struct.h"
+# include "../../../Downloads/readline-master/history.h"
+# include "../../../Downloads/readline-master/readline.h"
 
 int	g_foreground;
 
@@ -75,7 +78,7 @@ void	print_env(t_env **env);
 t_env	*env_init(char **s);
 
 char	*cmd_pwd(void);
-void	cmd_exit(void);
+void	cmd_exit(t_info **info);
 int		cmd_env(t_env *env);
 int		cmd_export(t_env **env, char *s);
 int		cmd_unset(t_env **env, char *s);
@@ -91,6 +94,7 @@ int		input(char *s);
 int		overwrite(char *s);
 int		append(char *s);
 
+void	rl_replace_line(const char *text, int clear_undo);
 void	new_fd(t_fd **fd, int new_fd);
 
 int     chk_command(char *command);

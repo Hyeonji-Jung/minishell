@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/02 21:20:00 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/03 15:44:05 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	prompt(t_info **info)
 	{
 		// signal 중 interrupt 있으면 다른 프롬프트 표시되어야 함 🙂: 보통 😡: interrupt로 하는 거 어떨까
 		command = readline("🙂 ➡️ ");
+		if (!command)
+			cmd_exit(info);
 		add_history(command);
 		if (chk_command(command))
 			continue ;
@@ -92,7 +94,7 @@ int	main(int argc, char *argv[], char *envp[])
 //     signal(SIGQUIT, catch_signal);
 //     system("clear");
 	tree = make_pipe(s);
-     g_foreground = 0;
-	 node_search(tree, "root");
-	 */
+	g_foreground = 0;
+	node_search(tree, "root");
+	*/
 }
