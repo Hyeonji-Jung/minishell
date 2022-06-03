@@ -51,18 +51,18 @@ REDIRECT ->     left: type,                  right: file_name
     - [] interrupt 상태일 경우 (ctrl-C signal, 이상한 명령어 들어온 경우 등) 다른 프롬프트 보여야 함
     - [] 최초 자식 process 생성
     - [] 부모 프로세스에서 pipe, cmd node에 따라 fork 및 pipe 처리 잘 해주어야 함
-    - [] builtin 처리
-      - [] echo (enable -n)
+    - [v] builtin 처리
+      - [v] echo (enable -n)
       - [v] cd 상대경로/절대경로 (no options)
       - [v] pwd (no options)
-      - [] export (no options)
-      - [] unset (no options)
+      - [v] export (no options)
+      - [v] unset (no options)
       - [v] env (no options, no arguments)
       - [] exit (no options)
-    - [] signal 처리
-      - [] ctrl-C
-      - [] ctrl-D
-      - [] ctrl-\
+    - [v] signal 처리
+      - [v] ctrl-C
+      - [v] ctrl-D
+      - [v] ctrl-\
     - [] redirects 처리
       - [] 존재하지 않는 파일 열거나 읽는 경우 예외 처리
       - [] 파일 생성 및 읽기 잘못된 경우 예외 처리 등등
