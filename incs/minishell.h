@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/03 16:13:29 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/03 17:08:34 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 
 # include "define.h"
 # include "struct.h"
-# include "../../../Downloads/readline-master/history.h"
-# include "../../../Downloads/readline-master/readline.h"
 
 int	g_foreground;
 

@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/03 15:44:05 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/03 17:43:26 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,21 @@ int	prompt(t_info **info)
 	}
 }
 
+t_info	*init(void)
+{
+	t_info			*info;
+	struct termios	term;
+
+	tcgetattr(STDIN_FILENO, &term);
+	term.c_lflag &= ~(ECHOCTL);
+	tcsetattr(STDIN_FILENO, TCSANOW, &term);
+	info = malloc_s(sizeof(t_info));
+	info->old_stdin = dup(STDIN_FILENO);
+	info->old_stdout = dup(STDOUT_FILENO);
+	info->fd = 0;
+	return (info);
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_env	*env;
@@ -78,23 +93,10 @@ int	main(int argc, char *argv[], char *envp[])
 
 	signal(SIGINT, signal_catch);
 	signal(SIGQUIT, signal_catch);
-	info = malloc_s(sizeof(t_info));
-	info->old_stdin = dup(STDIN_FILENO);
-	info->old_stdout = dup(STDOUT_FILENO);
-	info->fd = 0;
+	info = init();
 	env = env_init(envp);
 	info->env = env;
 	if (argc == 1)
 		prompt(&info);
 	argv[0] = argv[0];
-//	prompt();
-/*	char *s = argv[1];
-     t_node                  *tree;
-//     signal(SIGINT, catch_signal);
-//     signal(SIGQUIT, catch_signal);
-//     system("clear");
-	tree = make_pipe(s);
-	g_foreground = 0;
-	node_search(tree, "root");
-	*/
 }
