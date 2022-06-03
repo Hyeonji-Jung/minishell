@@ -58,7 +58,7 @@ REDIRECT ->     left: type,                  right: file_name
       - [v] export (no options)
       - [v] unset (no options)
       - [v] env (no options, no arguments)
-      - [] exit (no options)
+      - [v] exit (no options)
     - [v] signal 처리
       - [v] ctrl-C
       - [v] ctrl-D
@@ -67,7 +67,7 @@ REDIRECT ->     left: type,                  right: file_name
       - [] 존재하지 않는 파일 열거나 읽는 경우 예외 처리
       - [] 파일 생성 및 읽기 잘못된 경우 예외 처리 등등
     - [p] 환경변수($) 처리
-  - [] 마지막 자식 프로세스 종료 후 모든 메모리 해제 등 깔끔한 마무리
+  - [v] 마지막 자식 프로세스 종료 후 모든 메모리 해제 등 깔끔한 마무리
   - [v] 이전 명령어 history 조회
   - [] error 처리
     - [] interrupt
