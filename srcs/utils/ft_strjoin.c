@@ -10,9 +10,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (s1 == NULL && s2 == NULL)
 		return (0);
 	if (s1 == NULL)
-		return (s2);
+		return (ft_strdup(s2));
 	if (s2 == NULL)
-		return (s1);
+		return (ft_strdup(s1));
 	n = ft_strlen(s1);
 	m = ft_strlen(s2);
 	ret = malloc(sizeof(char) * (n + m + 1));

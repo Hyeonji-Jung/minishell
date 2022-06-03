@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/03 17:43:26 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/03 20:02:28 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	free_s(char **tmp, char **command, t_info **info)
 	(*info)->fd = 0;
 }
 
+
 int	prompt(t_info **info)
 {
 	char	*command;
@@ -49,12 +50,14 @@ int	prompt(t_info **info)
 	while (1)
 	{
 		// signal 중 interrupt 있으면 다른 프롬프트 표시되어야 함 🙂: 보통 😡: interrupt로 하는 거 어떨까
-		command = readline("🙂 ➡️ ");
+	//	command = readline("🙂 ➡️ ");
+		command = read_line();
+		printf("%s\n", command);
 		if (!command)
 			cmd_exit(info);
 		add_history(command);
-		if (chk_command(command))
-			continue ;
+//		if (chk_command(command))
+//			continue ;
 		tmp = multi_space(command);
 		if (!tmp)
 			continue ;

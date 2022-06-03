@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/03 17:08:34 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/03 20:55:26 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		input(char *s);
 int		overwrite(char *s);
 int		append(char *s);
 
-void	rl_replace_line(const char *text, int clear_undo);
+char	*read_line(void);
 void	new_fd(t_fd **fd, int new_fd);
 
 int     chk_command(char *command);
