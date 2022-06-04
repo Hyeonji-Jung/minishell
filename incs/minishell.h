@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/04 15:12:57 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/04 20:45:27 by hyeojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	free_tree(t_node **node);
 void	free_env(t_env **env);
 char	*ft_itoa(int n);
 char	*ft_strdup(char *src);
+char	*ft_strnstr(char *str, char *find, int size);
 
 void	signal_catch(int sig);
 
@@ -58,6 +59,8 @@ char	**parse_redirects(char *s);
 char	**parse_cmd(char *s);
 char	**parse_simplecmd(char *s);
 char	*parse_env(char *s, t_env *env);
+char	*parse_history(char *s);
+char    *parse_input(char *s);
 
 t_node	*make_cmd(char *s);
 t_node	*make_pipe(char *s);
@@ -84,6 +87,7 @@ int		cmd_export(t_env **env, char *s);
 int		cmd_unset(t_env **env, char *s);
 int		cmd_cd(char *s);
 int     cmd_echo(char **strs);
+void    cmd_bin(char **command, char **envp);
 
 void	new_process(t_info **info, t_node *node);
 void	node_execute(t_info **info, t_node *node);

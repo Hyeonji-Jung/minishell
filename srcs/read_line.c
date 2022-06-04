@@ -8,6 +8,8 @@ static char	*choose(int n)
 		return (ft_strdup("quote > "));
 	else if (n == 2)
 		return (ft_strdup("dquote > "));
+	else if (n == 0)
+		return (ft_strdup("> "));
 	return (0);
 }
 
@@ -15,24 +17,32 @@ static int	chk_read(char *s)
 {
 	int		quote;
 	int		dquote;
-	int		pipe;
+//	int		pipe;
 	int		i;
+	int		slash;
 
 	quote = 0;
 	dquote = 0;
-	pipe = 0;
+//	pipe = 0;
+	slash = 0;
 	i = -1;
 	while (s[++i])
 	{
-		if (s[i] == '\'' && !dquote)
+		if (s[i] == '\'' && !dquote && slash % 2 == 0)
 			quote = !quote;
-		else if (s[i] == '\"' && !quote)
+		else if (s[i] == '\"' && !quote && slash % 2 == 0)
 			dquote = !dquote;
+		if (s[i] == '\\')
+			slash++;
+		else
+			slash = 0;
 	}
 	if (quote)
 		return (1);
 	else if (dquote)
 		return (2);
+	else if (slash % 2 == 1)
+		return (3);
 	else
 		return (0);
 }

@@ -4,7 +4,7 @@ void	new_process(t_info **info, t_node *node)
 {
 	pid_t	pid;
 	int		fd[2];
-	int		status;
+	int		wstatus;
 
 	if (pipe(fd) == -1)
 	{
@@ -17,12 +17,13 @@ void	new_process(t_info **info, t_node *node)
 		dup2(fd[1], 1);
 		close(fd[0]);
 		node_execute(info, node->left);
-		strerror(g_foreground);
 		exit(g_foreground);
 	}
 	else
 	{
-		waitpid(-1, &status, 0);
+		waitpid(-1, &wstatus, 0);
+		if (WIFEXITED(wstatus))
+			strerror(WEXITSTATUS(wstatus));
 		dup2(fd[0], 0);
 		close(fd[1]);
 		node_execute(info, node->right);
@@ -50,8 +51,8 @@ void	node_execute(t_info **info, t_node *node)
 			print_err(node->left->content, "No such file or directory");
 		}
 	}
-	else if (node->type == PIPE && node->right)
-		new_process(info, node);
+//	else if (node->type == PIPE && node->right)
+//		new_process(info, node);
 	else
 	{
 		if (node->left)
@@ -96,7 +97,7 @@ int	cmd_execute(t_info **info, char *cmd, char *option)
 	else if (!ft_strcmp(cmd, "exit"))
 		cmd_exit(info);
 	else
-		printf("minishell: %s: command not found\n", cmd);
+		cmd_bin(split, (*info)->envp);
 	free_s(split);
 	return (0);
 }

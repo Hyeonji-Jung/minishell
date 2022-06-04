@@ -6,7 +6,11 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/04 14:00:17 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/04 21:35:50 by hyeojung         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*   Updated: 2022/06/04 17:26:54 by hyeojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +48,7 @@ int	prompt(t_info **info)
 	char	*command;
 	char	*tmp;
 	char	*tmp1;
-	t_node	*tree;
 
-	tree = NULL;
 	while (1)
 	{
 		// signal 중 interrupt 있으면 다른 프롬프트 표시되어야 함 🙂: 보통 😡: interrupt로 하는 거 어떨까
@@ -54,12 +56,18 @@ int	prompt(t_info **info)
 		command = read_line();
 		if (!command)
 			cmd_exit(info);
-		add_history(command);
+//		tmp = parse_history(command);
+//		add_history(tmp);
+//		free(tmp);
 //		if (chk_command(command))
 //			continue ;
 		tmp = multi_space(command);
+//		tmp1 = parse_input(tmp);
+//		free(tmp);
+//		tmp = tmp1;
 		if (!tmp)
 			continue ;
+		printf("%s\n", tmp);
 		tmp1 = parse_env(tmp, (*info)->env);
 		(*info)->tree = make_pipe(tmp1);
 		if (!(*info)->tree)
@@ -92,12 +100,13 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_env	*env;
 	t_info	*info;
-
+	
 	signal(SIGINT, signal_catch);
 	signal(SIGQUIT, signal_catch);
 	info = init();
 	env = env_init(envp);
 	info->env = env;
+	info->envp = envp;
 	if (argc == 1)
 		prompt(&info);
 	argv[0] = argv[0];

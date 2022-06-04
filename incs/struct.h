@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:13:29 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/02 17:21:01 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/04 17:29:38 by hyeojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct	s_info
 {
 	t_node	*tree;
 	t_env	*env;
+	char	**envp;
 	int		fd;
 //	t_fd	*fd;
 	int		old_stdin;

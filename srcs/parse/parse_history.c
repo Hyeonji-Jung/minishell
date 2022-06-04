@@ -5,9 +5,12 @@ static void	case1(char **ret, char *s, int i)
 	char	*add;
 	char	*tmp;
 
+	if (s[i + 2] == '\\' && s[i + 3] == '\n')
+		return ;
 	add = ft_substr(s, i + 2, 1);
 	tmp = ft_strjoin(*ret, add);
-	free(*ret);
+	if (*ret)
+		free(*ret);
 	free(add);
 	*ret = tmp;
 }
@@ -19,11 +22,19 @@ static void	case2(char **ret, char *s, int i)
 
 	add = ft_substr(s, i, 3);
 	tmp = ft_strjoin(*ret, add);
-	free(*ret);
-	*ret = ft_strjoin(tmp, "; ");
+	if (*ret)
+		free(*ret);
+	if (s[i + 3] == '\n')
+		*ret = ft_strjoin(tmp, "; ");
+	else
+	{
+		free(add);
+		add = ft_substr(s, i + 3, 1);
+		*ret = ft_strjoin(tmp, add);
+	}
 	free(tmp);
 	free(add);
-}`
+}
 
 static void case3(char **ret, char *s, int i)
 {
@@ -32,7 +43,8 @@ static void case3(char **ret, char *s, int i)
 
 	add = ft_substr(s, i, 1);
 	tmp = ft_strjoin(*ret, add);
-	free(*ret);
+	if (*ret)
+		free(*ret);
 	*ret = tmp;
 	free(add);
 }
@@ -40,8 +52,6 @@ static void case3(char **ret, char *s, int i)
 char	*parse_history(char *s)
 {
 	char	*ret;
-	char	*add;
-	char	*tmp;
 	int		i;
 
 	i = -1;
@@ -60,23 +70,11 @@ char	*parse_history(char *s)
 				case2(&ret, s, i);
 				i += 3;
 			}
+			else
+				case3(&ret, s, i);
 		}
 		else
 			case3(&ret, s, i);
 	}
 	return (ret);
-}
-
-int main(int argc, char *argv[])
-{
-	char *s;
-	char	*p;
-
-	while (1)
-	{
-		s = readline("> ");
-		p = parse_history(s);
-		printf("%s\t%s\n",s, p);
-	}
-	system("leaks a.out");
 }

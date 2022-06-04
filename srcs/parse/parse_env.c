@@ -7,7 +7,7 @@ static int	key_length(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == ' ' || s[i] == '$' || s[i] == '\"')
+		if (s[i] == ' ' || s[i] == '$' || s[i] == '\"' || s[i] == '\'')
 			break ;
 		i++;
 	}
@@ -73,12 +73,16 @@ void	after_env(char **ret, char *s, int i, t_env *env)
 	}
 	free(tmp);
 	tmp = convert_env(*ret, tmp1);
-	free(tmp1);
 	if (*ret != tmp)
 		free(*ret);
 	*ret = tmp;
 }
+/*
+char	*parse_env(char **ret, char *s, t_env *env, int n)
+{
 
+}
+*/
 char	*parse_env(char *s, t_env *env)
 {
 	int		quote;
@@ -86,6 +90,7 @@ char	*parse_env(char *s, t_env *env)
 	int		save;
 	int		key_len;
 	char	*ret;
+	int		slash;
 
 	if (!s)
 		return (0);
@@ -93,11 +98,12 @@ char	*parse_env(char *s, t_env *env)
 	quote = 0;
 	i = -1;
 	save = 0;
+	slash = 0;
 	while (s[++i])
 	{
 		if (s[i] == '\'')
 			quote = !quote;
-		else if (s[i] == '$' && !quote)
+		else if (s[i] == '$' && !quote && slash % 2 == 0)
 		{
 			key_len = key_length(&s[i + 1]);
 			before_env(&ret, s, save, i);
@@ -105,6 +111,12 @@ char	*parse_env(char *s, t_env *env)
 			save = i + key_len + 1;
 			i += key_len;
 		}
+		
+		if (s[i] == '\\')
+			slash++;
+		else
+			slash = 0;
+			
 	}
 	before_env(&ret, s, save, i);
 	return (ret);

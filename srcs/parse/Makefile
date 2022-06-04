@@ -1,7 +1,7 @@
 NAME = a.out
 CC = gcc
-FLAGS = -I ../../incs -lreadline
-SRCS = parse_history.c ../utils/ft_strjoin.c ../utils/ft_substr.c ../utils/ft_strlen.c ../utils/ft_strtrim.c ../utils/malloc_s.c
+FLAGS = -g -I ../../incs -lreadline
+SRCS = parse_history.c ../utils/ft_strjoin.c ../utils/ft_substr.c ../utils/ft_strlen.c ../utils/ft_strtrim.c ../utils/malloc_s.c ../read_line.c
 OBJS = $(SRCS:c=o)
 
 all : $(NAME)
