@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/03 20:02:28 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/04 14:00:17 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	prompt(t_info **info)
 		// signal 중 interrupt 있으면 다른 프롬프트 표시되어야 함 🙂: 보통 😡: interrupt로 하는 거 어떨까
 	//	command = readline("🙂 ➡️ ");
 		command = read_line();
-		printf("%s\n", command);
 		if (!command)
 			cmd_exit(info);
 		add_history(command);

@@ -37,6 +37,15 @@ static int	chk_read(char *s)
 		return (0);
 }
 
+void	add_newline(char **ret)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(*ret, "\n");
+	free(*ret);
+	*ret = tmp;
+}
+
 char	*read_line(void)
 {
 	char	*s;
@@ -50,7 +59,7 @@ char	*read_line(void)
 	{
 		tmp = readline(s);
 		if (!tmp)
-			continue ;
+			break ;
 		tmp1 = ft_strjoin(ret, tmp);
 		free(tmp);
 		tmp = NULL;
@@ -61,6 +70,7 @@ char	*read_line(void)
 		s = choose(chk_read(ret));
 		if (!chk_read(ret))
 			break ;
+		add_newline(&ret);
 	}
 	free(s);
 	return (ret);
