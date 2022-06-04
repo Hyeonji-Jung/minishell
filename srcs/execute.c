@@ -105,5 +105,7 @@ int	redirect_execute(char *type, char *file_name)
 		fd = overwrite(file_name);
 	else if (!ft_strcmp(type, ">>"))
 		fd = append(file_name);
+	else if (!ft_strcmp(type, "<<"))
+		fd = double_left_redirect(file_name);
 	return (fd);
 }

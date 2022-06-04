@@ -36,3 +36,32 @@ int	append(char *s)
 	dup2(fd, STDOUT_FILENO);
 	return (fd);
 }
+
+int	double_left_redirect(char *s)
+{
+	char	*ret;
+	char	*input;
+	char	*tmp;
+
+	ret = NULL;
+	tmp = NULL;
+	input = readline(">");
+	while (ft_strcmp(input, s))
+	{
+		if (ret)
+			tmp = ft_strjoin(ret, "\n");
+		free(ret);
+		ret = ft_strjoin(tmp, input);
+		if (tmp)
+			free(tmp);
+		if (input)
+			free(input);
+		input = readline(">");
+	}
+	free(input);
+	dup2(STDIN_FILENO, STDOUT_FILENO);
+	free(s);
+	write(1, ret, ft_strlen(ret));
+	free(ret);
+	return (STDIN_FILENO);
+}

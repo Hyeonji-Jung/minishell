@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/03 20:55:26 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/04 15:12:57 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int		redirect_execute(char *type, char *file_name);
 int		input(char *s);
 int		overwrite(char *s);
 int		append(char *s);
+int		double_left_redirect(char *s);
 
 char	*read_line(void);
 void	new_fd(t_fd **fd, int new_fd);
