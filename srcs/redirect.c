@@ -5,12 +5,6 @@ int	input(char *s)
 	int	fd;
 
 	fd = open(s, O_RDONLY, 0644);
-	if (fd < 0)
-	{
-		g_foreground = 1;
-		print_error("no such file or directory");
-		return (fd);
-	}
 	dup2(fd, STDIN_FILENO);
 	return (fd);
 }

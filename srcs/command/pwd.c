@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char	*cmd_pwd(void)
+void	cmd_pwd(void)
 {
 	char	*path;
 
@@ -8,9 +8,7 @@ char	*cmd_pwd(void)
 	if (path)
 	{
 		printf("%s\n", path);
+		free(path);
 		g_foreground = 0;
-		return (path);
 	}
-	else
-		return (NULL);
 }
