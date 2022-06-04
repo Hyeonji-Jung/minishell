@@ -53,7 +53,7 @@ char	*read_line(void)
 	char	*tmp1;
 	char	*tmp;
 
-	s = choose(0); 
+	s = choose(0);
 	ret = NULL;
 	while (1)
 	{

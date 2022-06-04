@@ -18,9 +18,11 @@
 # include <termios.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <unistd.h>
 # include <signal.h>
 # include <fcntl.h>
+# include <errno.h>
 # include <limits.h>
 # include <sys/ioctl.h>
 # include <sys/wait.h>
@@ -30,7 +32,7 @@
 # include "define.h"
 # include "struct.h"
 
-int	g_foreground;
+int     g_foreground;
 
 char	*ft_substr(char *s, int start, int len);
 int		ft_strlen(char *s);
@@ -75,7 +77,7 @@ void	delete_env(t_env **env, char *s);
 void	print_env(t_env **env);
 t_env	*env_init(char **s);
 
-char	*cmd_pwd(void);
+void    cmd_pwd(void);
 void	cmd_exit(t_info **info);
 int		cmd_env(t_env *env);
 int		cmd_export(t_env **env, char *s);
@@ -97,6 +99,7 @@ char	*read_line(void);
 void	new_fd(t_fd **fd, int new_fd);
 
 int     chk_command(char *command);
-void	print_error(char *s);
+void	print_err(char *cmd, char *err);
+void	print_err_arg(char *cmd, char *err, char *arg);
 
 #endif
