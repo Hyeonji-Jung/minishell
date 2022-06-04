@@ -24,7 +24,12 @@ int	chk_command(char *command)
 
 void	print_error(char *s)
 {
-	printf("error : %s\n", s);
+	printf("minishell: error: %s\n", s);
 }
 
 // void	exit_shell()
+
+void	print_err(char *cmd, char *err)
+{
+	printf("minishell: %s: %s\n", cmd, err);
+}

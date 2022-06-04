@@ -4,10 +4,11 @@ void	new_process(t_info **info, t_node *node)
 {
 	pid_t	pid;
 	int		fd[2];
+	int		status;
 
 	if (pipe(fd) == -1)
 	{
-		print_error("pipe error");
+		print_err(" ", "Pipe error");
 		return ;
 	}
 	pid = fork();
@@ -16,11 +17,12 @@ void	new_process(t_info **info, t_node *node)
 		dup2(fd[1], 1);
 		close(fd[0]);
 		node_execute(info, node->left);
-		exit(0);
+		strerror(g_foreground);
+		exit(g_foreground);
 	}
 	else
 	{
-		waitpid(-1, NULL, 0);
+		waitpid(-1, &status, 0);
 		dup2(fd[0], 0);
 		close(fd[1]);
 		node_execute(info, node->right);
@@ -39,8 +41,15 @@ void	node_execute(t_info **info, t_node *node)
 			cmd_execute(info, node->left->content, NULL);
 	}
 	else if (node->type == REDIRECT)
+	{
 		(*info)->fd = redirect_execute(node->left->content,
 				node->right->content);
+		if ((*info)->fd < 0)
+		{
+			g_foreground = 2;
+			print_err(node->left->content, "No such file or directory");
+		}
+	}
 	else if (node->type == PIPE && node->right)
 		new_process(info, node);
 	else
@@ -87,7 +96,7 @@ int	cmd_execute(t_info **info, char *cmd, char *option)
 	else if (!ft_strcmp(cmd, "exit"))
 		cmd_exit(info);
 	else
-		system(option); // system 함수가 사용가능한 함수 목록에 없어서 바꿔야 할 거 같음
+		printf("minishell: %s: command not found\n", cmd);
 	free_s(split);
 	return (0);
 }
