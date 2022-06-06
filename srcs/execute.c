@@ -68,6 +68,8 @@ static void	free_s(char **s)
 {
 	int	i;
 
+	if (!s)
+		return ;
 	i = 0;
 	while (s[i])
 	{
@@ -80,25 +82,31 @@ static void	free_s(char **s)
 int	cmd_execute(t_info **info, char *cmd, char *option)
 {
 	char	**split;
+	char	*tmp_cmd;
 
-	split = ft_split(option, ' '); // 스페이스 말고 공백문자로 수정 필요
-	if (!ft_strcmp(cmd, "echo"))
+	split = ft_split(option, ' ');
+	if (cmd[0] == '\'' || cmd[0] == '\"')
+		tmp_cmd = ft_substr(cmd, 1, ft_strlen(cmd) - 2);
+	else
+		tmp_cmd = ft_strdup(cmd);
+	if (!ft_strcmp(tmp_cmd, "echo"))
 		cmd_echo(split);
-	else if (!ft_strcmp(cmd, "cd"))
+	else if (!ft_strcmp(tmp_cmd, "cd"))
 		cmd_cd(split[1]);
-	else if (!ft_strcmp(cmd, "pwd"))
+	else if (!ft_strcmp(tmp_cmd, "pwd"))
 		cmd_pwd();
-	else if (!ft_strcmp(cmd, "env"))
+	else if (!ft_strcmp(tmp_cmd, "env"))
 		cmd_env((*info)->env);
-	else if (!ft_strcmp(cmd, "export"))
+	else if (!ft_strcmp(tmp_cmd, "export"))
 		cmd_export(&(*info)->env, split[1]);
-	else if (!ft_strcmp(cmd, "unset"))
+	else if (!ft_strcmp(tmp_cmd, "unset"))
 		cmd_unset(&(*info)->env, split[1]);
-	else if (!ft_strcmp(cmd, "exit"))
+	else if (!ft_strcmp(tmp_cmd, "exit"))
 		cmd_exit(info);
 	else
-		cmd_bin(split, (*info)->envp);
+		cmd_bin(tmp_cmd, split, (*info)->envp);
 	free_s(split);
+	free(tmp_cmd);
 	return (0);
 }
 

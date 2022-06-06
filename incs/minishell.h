@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/04 20:45:27 by hyeojung         ###   ########.fr       */
+/*   Updated: 2022/06/06 14:04:28 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int		cmd_export(t_env **env, char *s);
 int		cmd_unset(t_env **env, char *s);
 int		cmd_cd(char *s);
 int     cmd_echo(char **strs);
-void    cmd_bin(char **command, char **envp);
+void    cmd_bin(char *command, char **split, char **envp);
 
 void	new_process(t_info **info, t_node *node);
 void	node_execute(t_info **info, t_node *node);
