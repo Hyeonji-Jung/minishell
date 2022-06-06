@@ -77,6 +77,7 @@ int parse_dollar(char **ret, char *s, t_env *env, int i)
     }
     // else
     //     parse_env(ret, s, env, i);
+	return (0);
 }
 
 char    *parse_input(char *s)

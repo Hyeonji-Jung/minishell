@@ -29,6 +29,8 @@ int	parse_env(char *s, char **ret, t_env *env)
 
 	if (!s)
 		return (0);
+	if (ft_isnum(s[1]))
+		return (1);
 	len = key_length(&s[1]);
 	tmp = ft_substr(s, 1, len);
 	env_tmp = search_env(env, tmp);

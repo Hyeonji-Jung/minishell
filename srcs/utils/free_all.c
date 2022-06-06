@@ -9,8 +9,11 @@ void	free_tree(t_node **node)
 		free_tree(&tmp->left);
 	if (tmp->right)
 		free_tree(&tmp->right);
-	if (tmp->content[0])
-		free((*node)->content);
+	if (tmp->content)
+	{
+		if (tmp->content[0])
+			free((*node)->content);
+	}
 	free(*node);
 }
 

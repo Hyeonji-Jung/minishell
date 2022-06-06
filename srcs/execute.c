@@ -85,17 +85,37 @@ int	cmd_execute(t_info **info, char *cmd, char *option)
 
 	split = ft_split(option, ' ');
 	if (!ft_strcmp(cmd, "echo"))
-		cmd_echo(split);
+	{
+		if (!split)
+			cmd_echo(NULL);
+		else
+			cmd_echo(split);
+	}
 	else if (!ft_strcmp(cmd, "cd"))
-		cmd_cd(split[1]);
+	{
+		if (!split)
+			cmd_cd(NULL);
+		else
+			cmd_cd(split[0]);
+	}
 	else if (!ft_strcmp(cmd, "pwd"))
 		cmd_pwd();
 	else if (!ft_strcmp(cmd, "env"))
 		cmd_env((*info)->env);
 	else if (!ft_strcmp(cmd, "export"))
-		cmd_export(&(*info)->env, split[1]);
+	{
+		if (!split)
+			cmd_export(&(*info)->env, NULL);
+		else
+			cmd_export(&(*info)->env, split[0]);
+	}
 	else if (!ft_strcmp(cmd, "unset"))
-		cmd_unset(&(*info)->env, split[1]);
+	{
+		if (!split)
+			cmd_unset(&(*info)->env, NULL);
+		else
+			cmd_unset(&(*info)->env, split[0]);
+	}
 	else if (!ft_strcmp(cmd, "exit"))
 		cmd_exit(info);
 	else

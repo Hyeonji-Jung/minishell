@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/06 17:21:20 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/06 17:37:49 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	main(int argc, char *argv[], char *envp[])
 	env = env_init(envp);
 	info->env = env;
 	info->envp = envp;
-	if (argc == 1)
+//	if (argc == 1)
 		prompt(&info);
 	argv[0] = argv[0];
 }

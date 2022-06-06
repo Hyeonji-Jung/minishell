@@ -4,6 +4,11 @@ int	cmd_echo(char **strs)
 {
 	int	i;
 
+	if (!strs)
+	{
+		printf("\n");
+		return (0);
+	}
 	if (!ft_strcmp(strs[0], "-n"))
 		i = 1;
 	else
