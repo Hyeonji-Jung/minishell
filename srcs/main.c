@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/06 16:32:40 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/06 17:21:20 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,8 @@ void	node_search(t_node *node, char *s)
 		node_search(node->right, ft_strjoin(s, "->right"));
 }
 
-static void	free_s(char **tmp, char **command, t_info **info)
+static void	free_s(char **command, t_info **info)
 {
-	if (*tmp)
-	{
-//		free(*tmp);
-//		*tmp = NULL;
-	}
 	free(*command);
 	*command = NULL;
 	dup2((*info)->old_stdin, STDIN_FILENO);
@@ -62,21 +57,20 @@ int	prompt(t_info **info)
 //		if (chk_command(command))
 //			continue ;
 		tmp = multi_space(command);
-	//	tmp1 = parse_input(tmp);
-//		free(tmp);
-//		tmp = tmp1;
 		if (!tmp)
 			continue ;
+//		tmp1 = parse_input(tmp);
+//		free(tmp);
 		(*info)->tree = make_pipe(tmp);
 		if (!(*info)->tree)
 		{
-			free_s(&tmp, &command, info);
+			free_s(&command, info);
 			continue ;
 		}
 		node_convert(info, &(*info)->tree);
 		node_execute(info, (*info)->tree);
 		free_tree(&(*info)->tree);
-		free_s(&tmp, &command, info);
+		free_s(&command, info);
 	}
 }
 
