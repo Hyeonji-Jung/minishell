@@ -11,9 +11,9 @@ int	chk_redirects(char *s)
 	dquote = 0;
 	while (s[++i])
 	{
-		if (s[i] == '\'')
+		if (s[i] == '\'' && !dquote)
 			quote = !quote;
-		else if (s[i] == '\"')
+		else if (s[i] == '\"' && !quote)
 			dquote = !dquote;
 		else if ((s[i] == '<' || s[i] == '>') && !quote && !dquote)
 			break ;

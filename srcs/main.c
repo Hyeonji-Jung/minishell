@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/06 14:07:20 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/06 16:32:40 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	free_s(char **tmp, char **command, t_info **info)
 {
 	if (*tmp)
 	{
-		free(*tmp);
-		*tmp = NULL;
+//		free(*tmp);
+//		*tmp = NULL;
 	}
 	free(*command);
 	*command = NULL;
@@ -67,14 +67,13 @@ int	prompt(t_info **info)
 //		tmp = tmp1;
 		if (!tmp)
 			continue ;
-		printf("%s\n", tmp);
-		tmp1 = parse_env(tmp, (*info)->env);
-		(*info)->tree = make_pipe(tmp1);
+		(*info)->tree = make_pipe(tmp);
 		if (!(*info)->tree)
 		{
 			free_s(&tmp, &command, info);
 			continue ;
 		}
+		node_convert(info, &(*info)->tree);
 		node_execute(info, (*info)->tree);
 		free_tree(&(*info)->tree);
 		free_s(&tmp, &command, info);
