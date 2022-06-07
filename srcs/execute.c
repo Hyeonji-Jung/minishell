@@ -83,7 +83,6 @@ int	cmd_execute(t_info **info, char *cmd, char *option)
 {
 	char	**split;
 
-	printf("\t%s %s\n\n", cmd, option);
 	split = ft_split(option, ' ');
 	if (!ft_strcmp(cmd, "echo"))
 	{

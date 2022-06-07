@@ -4,7 +4,7 @@ int	cmd_export(t_env **env, char *s)
 {
 	if (s == NULL)
 	{
-		print_env(env);
+		export_print(env);
 		g_foreground = 0;
 		return (0);
 	}

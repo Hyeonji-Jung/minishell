@@ -45,3 +45,45 @@ void	print_env(t_env **env)
 		tmp = tmp->next;
 	}
 }
+
+t_env	*export_sort(t_env **env)
+{
+	char	*tmp;
+	t_env	*sort;
+	t_env	*cmp;
+	t_env	*ret;
+
+	sort = *env;
+	ret = sort;
+	while (sort != NULL)
+	{
+		cmp = sort;
+		while (cmp != NULL)
+		{
+			if (ft_strcmp(sort->key, cmp->key) > 0)
+			{
+				tmp = sort->key;
+				sort->key = cmp->key;
+				cmp->key = tmp;
+				tmp = sort->value;
+				sort->value = cmp->value;
+				cmp->value = tmp;
+			}
+			cmp = cmp->next;
+		}
+		sort = sort->next;
+	}
+	return (ret);
+}
+
+void	export_print(t_env **env)
+{
+	t_env	*tmp;
+
+	tmp = export_sort(env);
+	while (tmp != NULL)
+	{
+		printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);
+		tmp = tmp->next;
+	}
+}
