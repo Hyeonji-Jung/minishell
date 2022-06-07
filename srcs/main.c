@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:39:33 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/06 19:30:52 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/07 15:56:15 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	prompt(t_info **info)
 	//	command = readline("🙂 ➡️ ");
 		command = read_line();
 		if (!command)
-			cmd_exit(info);
+			cmd_exit(info, NULL);
 		tmp = parse_history(command);
 		add_history(tmp);
 		free(tmp);
