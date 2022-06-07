@@ -99,7 +99,7 @@ int	cmd_execute(t_info **info, char *cmd, char *option)
 	else if (!ft_strcmp(cmd, "unset"))
 		cmd_unset(&(*info)->env, *tmp);
 	else if (!ft_strcmp(cmd, "exit"))
-		cmd_exit(info, *tmp);
+		cmd_exit(info, tmp);
 	else
 		cmd_bin(cmd, split, (*info)->envp);
 	free_s(split);

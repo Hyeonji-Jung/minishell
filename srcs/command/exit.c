@@ -17,7 +17,7 @@ static int	ft_isnum(char *s)
 	return (1);
 }
 
-void	cmd_exit(t_info **info, char *s)
+void	cmd_exit(t_info **info, char **s)
 {
 	/*
 	* 여기에서 고려해야 할 것 - 아름다운 마무리
@@ -31,11 +31,11 @@ void	cmd_exit(t_info **info, char *s)
 		exit(0);
 	else
 	{
-		if (ft_isnum(s))
-			exit((unsigned char)ft_atoi(s));
+		if (ft_isnum(*s))
+			exit((unsigned char)ft_atoi(*s));
 		else
 		{
-			print_err("exit", ft_strjoin(s, ": numeric argument required"));
+			print_err("exit", ft_strjoin(*s, ": numeric argument required"));
 			exit(255);
 		}
 	}

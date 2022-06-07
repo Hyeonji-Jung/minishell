@@ -28,3 +28,8 @@ void	print_err(char *cmd, char *err)
 {
 	printf("minishell: %s: %s\n", cmd, err);
 }
+
+void	print_err_arg(char *cmd, char *err, char *arg)
+{
+	printf("minishell: %s: `%s\': %s\n", cmd, arg, err);
+}
