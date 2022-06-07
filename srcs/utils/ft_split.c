@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 21:58:49 by junpkim           #+#    #+#             */
-/*   Updated: 2022/06/01 15:25:14 by hyeojung         ###   ########.fr       */
+/*   Updated: 2022/06/07 16:34:13 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	**do_malloc(int n)
 {
 	char	**ret;
 
-	ret = malloc(sizeof(char *) * (n + 1));
+	ret = malloc_s(sizeof(char *) * (n + 1));
 	if (ret == NULL)
 		return (0);
 	ret[n] = 0;

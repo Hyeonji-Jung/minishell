@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junpkim <junpkim@student.42seoul.k>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/07 16:33:41 by junpkim           #+#    #+#             */
+/*   Updated: 2022/06/07 16:33:52 by junpkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	get_len(char *s)
@@ -21,7 +33,7 @@ char	*delete_space(char *s)
 	int		i;
 	int		j;
 
-	ret = malloc(sizeof(char) * (get_len(s) + 1));
+	ret = malloc_s(sizeof(char) * (get_len(s) + 1));
 	ret[get_len(s)] = '\0';
 	i = -1;
 	j = 0;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junpkim <junpkim@student.42seoul.k>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/07 16:33:18 by junpkim           #+#    #+#             */
+/*   Updated: 2022/06/07 16:34:23 by junpkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -15,7 +27,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (ft_strdup(s1));
 	n = ft_strlen(s1);
 	m = ft_strlen(s2);
-	ret = malloc(sizeof(char) * (n + m + 1));
+	ret = malloc_s(sizeof(char) * (n + m + 1));
 	if (ret == NULL)
 		return (0);
 	i = -1;
