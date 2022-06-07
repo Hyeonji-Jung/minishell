@@ -6,7 +6,7 @@
 /*   By: hyeojung <hyeojung@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:38:57 by hyeojung          #+#    #+#             */
-/*   Updated: 2022/06/07 14:06:31 by junpkim          ###   ########.fr       */
+/*   Updated: 2022/06/07 15:37:14 by junpkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	free_env(t_env **env);
 char	*ft_itoa(int n);
 char	*ft_strdup(char *src);
 char	*ft_strnstr(char *str, char *find, int size);
+int		ft_atoi(char *s);
 
 void	signal_catch(int sig);
 
@@ -82,7 +83,7 @@ void	export_print(t_env **env);
 t_env	*env_init(char **s);
 
 void    cmd_pwd(void);
-void	cmd_exit(t_info **info);
+void	cmd_exit(t_info **info, char *s);
 int		cmd_env(t_env *env);
 int		cmd_export(t_env **env, char *s);
 int		cmd_unset(t_env **env, char *s);

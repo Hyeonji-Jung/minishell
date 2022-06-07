@@ -51,8 +51,8 @@ void	node_execute(t_info **info, t_node *node)
 			print_err(node->left->content, "No such file or directory");
 		}
 	}
-//	else if (node->type == PIPE && node->right)
-//		new_process(info, node);
+	else if (node->type == PIPE && node->right)
+		new_process(info, node);
 	else
 	{
 		if (node->left)
@@ -82,42 +82,24 @@ static void	free_s(char **s)
 int	cmd_execute(t_info **info, char *cmd, char *option)
 {
 	char	**split;
+	char	**tmp;
 
 	split = ft_split(option, ' ');
+	tmp = &split[0];
 	if (!ft_strcmp(cmd, "echo"))
-	{
-		if (!split)
-			cmd_echo(NULL);
-		else
-			cmd_echo(split);
-	}
+		cmd_echo(tmp);
 	else if (!ft_strcmp(cmd, "cd"))
-	{
-		if (!split)
-			cmd_cd(NULL);
-		else
-			cmd_cd(split[0]);
-	}
+		cmd_cd(*tmp);
 	else if (!ft_strcmp(cmd, "pwd"))
 		cmd_pwd();
 	else if (!ft_strcmp(cmd, "env"))
 		cmd_env((*info)->env);
 	else if (!ft_strcmp(cmd, "export"))
-	{
-		if (!split)
-			cmd_export(&(*info)->env, NULL);
-		else
-			cmd_export(&(*info)->env, split[0]);
-	}
+		cmd_export(&(*info)->env, *tmp);
 	else if (!ft_strcmp(cmd, "unset"))
-	{
-		if (!split)
-			cmd_unset(&(*info)->env, NULL);
-		else
-			cmd_unset(&(*info)->env, split[0]);
-	}
+		cmd_unset(&(*info)->env, *tmp);
 	else if (!ft_strcmp(cmd, "exit"))
-		cmd_exit(info);
+		cmd_exit(info, *tmp);
 	else
 		cmd_bin(cmd, split, (*info)->envp);
 	free_s(split);
